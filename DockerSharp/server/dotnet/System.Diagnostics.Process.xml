@@ -1,0 +1,1742 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Diagnostics.Process</name>
+    </assembly>
+    <members>
+        <member name="T:System.Diagnostics.Process">
+            <devdoc>
+               <para>
+                  Provides access to local and remote
+                  processes. Enables you to start and stop system processes.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.#ctor">
+            <devdoc>
+               <para>
+                  Initializes a new instance of the <see cref='T:System.Diagnostics.Process'/> class.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.Associated">
+            <devdoc>
+                Returns whether this process component is associated with a real process.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.Process.BasePriority">
+            <devdoc>
+               <para>
+                  Gets the base priority of
+                  the associated process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.ExitCode">
+            <devdoc>
+               <para>
+                  Gets
+                  the
+                  value that was specified by the associated process when it was terminated.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.HasExited">
+            <devdoc>
+               <para>
+                  Gets a
+                  value indicating whether the associated process has been terminated.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.StartTime">
+            <summary>Gets the time the associated process was started.</summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.ExitTime">
+            <devdoc>
+               <para>
+                  Gets the time that the associated process exited.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.Id">
+            <devdoc>
+               <para>
+                  Gets
+                  the unique identifier for the associated process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.MachineName">
+            <devdoc>
+               <para>
+                  Gets
+                  the name of the computer on which the associated process is running.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.MaxWorkingSet">
+            <devdoc>
+               <para>
+                  Gets or sets the maximum allowable working set for the associated
+                  process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.MinWorkingSet">
+            <devdoc>
+               <para>
+                  Gets or sets the minimum allowable working set for the associated
+                  process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.PriorityBoostEnabled">
+            <devdoc>
+               <para>
+                  Gets or sets a value indicating whether the associated process priority
+                  should be temporarily boosted by the operating system when the main window
+                  has focus.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.PriorityClass">
+            <devdoc>
+               <para>
+                  Gets or sets the overall priority category for the
+                  associated process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.ProcessName">
+            <devdoc>
+               <para>
+                  Gets
+                  the friendly name of the process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.ProcessorAffinity">
+            <devdoc>
+               <para>
+                  Gets
+                  or sets which processors the threads in this process can be scheduled to run on.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.StartInfo">
+            <devdoc>
+               <para>
+                  Gets or sets the properties to pass into the <see cref='M:System.Diagnostics.Process.Start(System.Diagnostics.ProcessStartInfo)'/> method for the <see cref='T:System.Diagnostics.Process'/>.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.Threads">
+            <devdoc>
+               <para>
+                  Gets the set of threads that are running in the associated
+                  process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.EnableRaisingEvents">
+            <devdoc>
+               <para>
+                  Gets or sets whether the <see cref='E:System.Diagnostics.Process.Exited'/>
+                  event is fired
+                  when the process terminates.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.StandardInput">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.StandardOutput">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Process.StandardError">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.CompletionCallback(System.Object,System.Boolean)">
+            <devdoc>
+                This is called from the threadpool when a process exits.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.Dispose(System.Boolean)">
+            <internalonly/>
+            <devdoc>
+               <para>
+                  Free any resources associated with this component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.Close">
+            <devdoc>
+               <para>
+                  Frees any resources associated with this component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.EnsureState(System.Diagnostics.Process.State)">
+            <devdoc>
+                Helper method for checking preconditions when accessing properties.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.EnsureWorkingSetLimits">
+            <devdoc>
+                Make sure we have obtained the min and max working set limits.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.SetWorkingSetLimits(System.Nullable{System.IntPtr},System.Nullable{System.IntPtr})">
+            <devdoc>
+                Helper to set minimum or maximum working set limits.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)">
+            <devdoc>
+               <para>
+                  Returns a new <see cref='T:System.Diagnostics.Process'/> component given a process identifier and
+                  the name of a computer in the network.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcessById(System.Int32)">
+            <devdoc>
+               <para>
+                  Returns a new <see cref='T:System.Diagnostics.Process'/> component given the
+                  identifier of a process on the local computer.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcessesByName(System.String)">
+            <devdoc>
+               <para>
+                  Creates an array of <see cref='T:System.Diagnostics.Process'/> components that are
+                  associated
+                  with process resources on the
+                  local computer. These process resources share the specified process name.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcesses">
+            <devdoc>
+               <para>
+                  Creates a new <see cref='T:System.Diagnostics.Process'/>
+                  component for each process resource on the local computer.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcesses(System.String)">
+            <devdoc>
+               <para>
+                  Creates a new <see cref='T:System.Diagnostics.Process'/>
+                  component for each
+                  process resource on the specified computer.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetCurrentProcess">
+            <devdoc>
+               <para>
+                  Returns a new <see cref='T:System.Diagnostics.Process'/>
+                  component and associates it with the current active process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.OnExited">
+            <devdoc>
+               <para>
+                  Raises the <see cref='E:System.Diagnostics.Process.Exited'/> event.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.RaiseOnExited">
+            <devdoc>
+                Raise the Exited event, but make sure we don't do it more than once.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.Refresh">
+            <devdoc>
+               <para>
+                  Discards any information about the associated process
+                  that has been cached inside the process component. After <see cref='M:System.Diagnostics.Process.Refresh'/> is called, the
+                  first request for information for each property causes the process component
+                  to obtain a new value from the associated process.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetOrOpenProcessHandle">
+            <summary>
+            Opens a long-term handle to the process, with all access.  If a handle exists,
+            then it is reused.  If the process has exited, it throws an exception.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.SetProcessHandle(Microsoft.Win32.SafeHandles.SafeProcessHandle)">
+            <devdoc>
+                Helper to associate a process handle with this component.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.SetProcessId(System.Int32)">
+            <devdoc>
+                Helper to associate a process id with this component.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.ConfigureAfterProcessIdSet">
+            <summary>Additional configuration when a process ID is set.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.Start">
+            <devdoc>
+               <para>
+                  Starts a process specified by the <see cref='P:System.Diagnostics.Process.StartInfo'/> property of this <see cref='T:System.Diagnostics.Process'/>
+                  component and associates it with the
+               <see cref='T:System.Diagnostics.Process'/> . If a process resource is reused 
+                  rather than started, the reused process is associated with this <see cref='T:System.Diagnostics.Process'/>
+                  component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.Start(System.String)">
+            <devdoc>
+               <para>
+                  Starts a process resource by specifying the name of a
+                  document or application file. Associates the process resource with a new <see cref='T:System.Diagnostics.Process'/>
+                  component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.Start(System.String,System.String)">
+            <devdoc>
+               <para>
+                  Starts a process resource by specifying the name of an
+                  application and a set of command line arguments. Associates the process resource
+                  with a new <see cref='T:System.Diagnostics.Process'/>
+                  component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.Start(System.Diagnostics.ProcessStartInfo)">
+            <devdoc>
+               <para>
+                  Starts a process resource specified by the process start
+                  information passed in, for example the file name of the process to start.
+                  Associates the process resource with a new <see cref='T:System.Diagnostics.Process'/>
+                  component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.StopWatchingForExit">
+            <devdoc>
+                Make sure we are not watching for process exit.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.WaitForExit">
+            <devdoc>
+               <para>
+                  Instructs the <see cref='T:System.Diagnostics.Process'/> component to wait
+                  indefinitely for the associated process to exit.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.WaitForExit(System.Int32)">
+            <summary>
+            Instructs the Process component to wait the specified number of milliseconds for 
+            the associated process to exit.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.BeginOutputReadLine">
+            <devdoc>
+            <para>
+            Instructs the <see cref='T:System.Diagnostics.Process'/> component to start
+            reading the StandardOutput stream asynchronously. The user can register a callback
+            that will be called when a line of data terminated by \n,\r or \r\n is reached, or the end of stream is reached
+            then the remaining information is returned. The user can add an event handler to OutputDataReceived.
+            </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.BeginErrorReadLine">
+            <devdoc>
+            <para>
+            Instructs the <see cref='T:System.Diagnostics.Process'/> component to start
+            reading the StandardError stream asynchronously. The user can register a callback
+            that will be called when a line of data terminated by \n,\r or \r\n is reached, or the end of stream is reached
+            then the remaining information is returned. The user can add an event handler to ErrorDataReceived.
+            </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.CancelOutputRead">
+            <devdoc>
+            <para>
+            Instructs the <see cref='T:System.Diagnostics.Process'/> component to cancel the asynchronous operation
+            specified by BeginOutputReadLine().
+            </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Process.CancelErrorRead">
+            <devdoc>
+            <para>
+            Instructs the <see cref='T:System.Diagnostics.Process'/> component to cancel the asynchronous operation
+            specified by BeginErrorReadLine().
+            </para>
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.Process.StreamReadMode">
+            <summary>
+            This enum defines the operation mode for redirected process stream.
+            We don't support switching between synchronous mode and asynchronous mode.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.Process.State">
+            <summary>A desired internal state.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.EnterDebugMode">
+            <summary>
+            Puts a Process component in state to interact with operating system processes that run in a 
+            special mode by enabling the native property SeDebugPrivilege on the current thread.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.LeaveDebugMode">
+            <summary>
+            Takes a Process component out of the state that lets it interact with operating system processes 
+            that run in a special mode.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.Kill">
+            <summary>Terminates the associated process immediately.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.RefreshCore">
+            <summary>Discards any information about the associated process.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.CloseCore">
+            <summary>Additional logic invoked when the Process is closed.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.EnsureWatchingForExit">
+            <devdoc>
+                Make sure we are watching for a process exit.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.Process.WaitForExitCore(System.Int32)">
+            <summary>
+            Instructs the Process component to wait the specified number of milliseconds for the associated process to exit.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.MainModule">
+            <summary>Gets the main module for the associated process.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.UpdateHasExited">
+            <summary>Checks whether the process has exited and updates state accordingly.</summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.ExitTimeCore">
+            <summary>Gets the time that the associated process exited.</summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.PriorityBoostEnabledCore">
+            <summary>
+            Gets or sets a value indicating whether the associated process priority
+            should be temporarily boosted by the operating system when the main window
+            has focus.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.PriorityClassCore">
+            <summary>
+            Gets or sets the overall priority category for the associated process.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetCurrentProcessId">
+            <summary>Gets the ID of the current process.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.IsParentOf(System.Diagnostics.Process)">
+            <summary>Checks whether the argument is a direct child of this process.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcessHandle">
+            <summary>
+            Gets a short-term handle to the process, with the given access.  If a handle exists,
+            then it is reused.  If the process has exited, it throws an exception.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.StartCore(System.Diagnostics.ProcessStartInfo)">
+            <summary>
+            Starts the process using the supplied start info. 
+            With UseShellExecute option, we'll try the shell tools to launch it(e.g. "open fileName")
+            </summary>
+            <param name="startInfo">The start info with which to start the process.</param>
+        </member>
+        <member name="F:System.Diagnostics.Process._waitStateHolder">
+            <summary>Finalizable holder for the underlying shared wait state object.</summary>
+        </member>
+        <member name="F:System.Diagnostics.Process.StreamBufferSize">
+            <summary>Size to use for redirect streams and stream readers/writers.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.ParseArgv(System.Diagnostics.ProcessStartInfo,System.String,System.Boolean)">
+            <summary>Converts the filename and arguments information from a ProcessStartInfo into an argv array.</summary>
+            <param name="psi">The ProcessStartInfo.</param>
+            <param name="resolvedExe">Resolved executable to open ProcessStartInfo.FileName</param>
+            <param name="ignoreArguments">Don't pass ProcessStartInfo.Arguments</param>
+            <returns>The argv array.</returns>
+        </member>
+        <member name="M:System.Diagnostics.Process.CreateEnvp(System.Diagnostics.ProcessStartInfo)">
+            <summary>Converts the environment variables information from a ProcessStartInfo into an envp array.</summary>
+            <param name="psi">The ProcessStartInfo.</param>
+            <returns>The envp array.</returns>
+        </member>
+        <member name="M:System.Diagnostics.Process.ResolvePath(System.String)">
+            <summary>Resolves a path to the filename passed to ProcessStartInfo. </summary>
+            <param name="filename">The filename.</param>
+            <returns>The resolved path. It can return null in case of URLs.</returns>
+        </member>
+        <member name="M:System.Diagnostics.Process.FindProgramInPath(System.String)">
+            <summary>
+            Gets the path to the program
+            </summary>
+            <param name="program"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Diagnostics.Process.TicksToTimeSpan(System.Double)">
+            <summary>Convert a number of "jiffies", or ticks, to a TimeSpan.</summary>
+            <param name="ticks">The number of ticks.</param>
+            <returns>The equivalent TimeSpan.</returns>
+        </member>
+        <member name="M:System.Diagnostics.Process.OpenStream(System.Int32,System.IO.FileAccess)">
+            <summary>Opens a stream around the specified file descriptor and with the specified access.</summary>
+            <param name="fd">The file descriptor.</param>
+            <param name="access">The access mode.</param>
+            <returns>The opened stream.</returns>
+        </member>
+        <member name="M:System.Diagnostics.Process.ParseArgumentsIntoList(System.String,System.Collections.Generic.List{System.String})">
+            <summary>Parses a command-line argument string into a list of arguments.</summary>
+            <param name="arguments">The argument string.</param>
+            <param name="results">The list into which the component arguments should be stored.</param>
+            <remarks>
+            This follows the rules outlined in "Parsing C++ Command-Line Arguments" at 
+            https://msdn.microsoft.com/en-us/library/17w5ykft.aspx.
+            </remarks>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetWaitState">
+            <summary>Gets the wait state for this Process object.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.ConfigureTerminalForChildProcesses(System.Int32)">
+            <summary>
+            This method is called when the number of child processes that are using the terminal changes.
+            It updates the terminal configuration if necessary.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetProcessesByName(System.String,System.String)">
+            <summary>
+            Creates an array of <see cref="T:System.Diagnostics.Process"/> components that are associated with process resources on a
+            remote computer. These process resources share the specified process name.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.PrivilegedProcessorTime">
+            <summary>Gets the amount of time the process has spent running code inside the operating system core.</summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.StartTimeCore">
+            <summary>Gets the time the associated process was started.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.BootTimeToDateTime(System.TimeSpan)">
+            <summary>Computes a time based on a number of ticks since boot.</summary>
+            <param name="timespanAfterBoot">The timespan since boot.</param>
+            <returns>The converted time.</returns>
+        </member>
+        <member name="P:System.Diagnostics.Process.BootTime">
+            <summary>Gets the system boot time.</summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.ParentProcessId">
+            <summary>Gets the parent process ID</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetPathToOpenFile">
+            <summary>Gets execution path</summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.TotalProcessorTime">
+            <summary>
+            Gets the amount of time the associated process has spent utilizing the CPU.
+            It is the sum of the <see cref='P:System.Diagnostics.Process.UserProcessorTime'/> and
+            <see cref='P:System.Diagnostics.Process.PrivilegedProcessorTime'/>.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.UserProcessorTime">
+            <summary>
+            Gets the amount of time the associated process has spent running code
+            inside the application portion of the process (not the operating system core).
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.Process.ProcessorAffinityCore">
+            <summary>
+            Gets or sets which processors the threads in this process can be scheduled to run on.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetWorkingSetLimits(System.IntPtr@,System.IntPtr@)">
+            <summary>
+            Make sure we have obtained the min and max working set limits.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.SetWorkingSetLimitsCore(System.Nullable{System.IntPtr},System.Nullable{System.IntPtr},System.IntPtr@,System.IntPtr@)">
+            <summary>Sets one or both of the minimum and maximum working set limits.</summary>
+            <param name="newMin">The new minimum working set limit, or null not to change it.</param>
+            <param name="newMax">The new maximum working set limit, or null not to change it.</param>
+            <param name="resultingMin">The resulting minimum working set limit after any changes applied.</param>
+            <param name="resultingMax">The resulting maximum working set limit after any changes applied.</param>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetExePath(System.Int32)">
+            <summary>Gets the path to the executable for the process, or null if it could not be retrieved.</summary>
+            <param name="processId">The pid for the target process, or -1 for the current process.</param>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetUntruncatedProcessName(Interop.procfs.ParsedStat@)">
+            <summary>Gets the name that was used to start the process, or null if it could not be retrieved.</summary>
+            <param name="stat">The stat for the target process.</param>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetStat">
+            <summary>Reads the stats information for this process from the procfs file system.</summary>
+        </member>
+        <member name="M:System.Diagnostics.Process.GetChildProcesses(System.Diagnostics.Process[])">
+            <summary>
+            Returns all immediate child processes.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.ProcessInfo">
+            <summary>
+            This data structure contains information about a process that is collected
+            in bulk by querying the operating system.  The reason to make this a separate
+            structure from the process component is so that we can throw it away all at once
+            when Refresh is called on the component.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.IsRemoteMachine(System.String)">
+            <summary>Gets whether the named machine is remote or local.</summary>
+            <param name="machineName">The machine name.</param>
+            <returns>true if the machine is remote; false if it's local.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.IsProcessRunning(System.Int32,System.String)">
+            <summary>Gets whether the process with the specified ID on the specified machine is currently running.</summary>
+            <param name="processId">The process ID.</param>
+            <param name="machineName">The machine name.</param>
+            <returns>true if the process is running; otherwise, false.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.IsProcessRunning(System.Int32)">
+            <summary>Gets whether the process with the specified ID is currently running.</summary>
+            <param name="processId">The process ID.</param>
+            <returns>true if the process is running; otherwise, false.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.GetProcessInfo(System.Int32,System.String)">
+            <summary>Gets the ProcessInfo for the specified process ID on the specified machine.</summary>
+            <param name="processId">The process ID.</param>
+            <param name="machineName">The machine name.</param>
+            <returns>The ProcessInfo for the process if it could be found; otherwise, null.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.GetProcessIds(System.String)">
+            <summary>Gets the IDs of all processes on the specified machine.</summary>
+            <param name="machineName">The machine to examine.</param>
+            <returns>An array of process IDs from the specified machine.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.GetProcessIdFromHandle(Microsoft.Win32.SafeHandles.SafeProcessHandle)">
+            <summary>Gets the ID of a process from a handle to the process.</summary>
+            <param name="processHandle">The handle.</param>
+            <returns>The process ID.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.GetProcessIds">
+            <summary>Gets the IDs of all processes on the current machine.</summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.GetProcessInfos(System.String)">
+            <summary>Gets process infos for each process on the specified machine.</summary>
+            <param name="machineName">The target machine.</param>
+            <returns>An array of process infos, one per found process.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.GetModules(System.Int32)">
+            <summary>Gets an array of module infos for the specified process.</summary>
+            <param name="processId">The ID of the process whose modules should be enumerated.</param>
+            <returns>The array of modules.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.CreateProcessInfo(System.Int32,System.Text.ReusableTextReader)">
+            <summary>
+            Creates a ProcessInfo from the specified process ID.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.CreateProcessInfo(Interop.procfs.ParsedStat@,Interop.procfs.ParsedStatus@,System.Text.ReusableTextReader,System.String)">
+            <summary>
+            Creates a ProcessInfo from the data parsed from a /proc/pid/stat file and the associated tasks directory.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.EnumerateProcessIds">
+            <summary>Enumerates the IDs of all processes on the current machine.</summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessManager.ProcFsStateToThreadState(System.Char)">
+            <summary>Gets a ThreadState to represent the value returned from the status field of /proc/pid/stat.</summary>
+            <param name="c">The status field value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Diagnostics.ProcessModule">
+            <devdoc>
+                A process module component represents a DLL or EXE loaded into
+                a particular process.  Using this component, you can determine
+                information about the module.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessModule.ModuleName">
+            <devdoc>
+                Returns the name of the Module.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessModule.FileName">
+            <devdoc>
+                Returns the full file path for the location of the module.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessModule.BaseAddress">
+            <devdoc>
+                Returns the memory address that the module was loaded at.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessModule.ModuleMemorySize">
+            <devdoc>
+                Returns the amount of memory required to load the module.  This does
+                not include any additional memory allocations made by the module once
+                it is running; it only includes the size of the static code and data
+                in the module file.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessModule.EntryPointAddress">
+            <devdoc>
+                Returns the memory address for function that runs when the module is
+                loaded and run.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessModule.FileVersionInfo">
+            <devdoc>
+                Returns version information about the module.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ProcessPriorityClass">
+            <devdoc>
+                A category of priority for a process.  Threads within a process
+                run at a priority which is relative to the process priority class.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessPriorityClass.Normal">
+            <devdoc>
+                 Specify this class for a process with no special scheduling needs. 
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessPriorityClass.Idle">
+            <devdoc>
+                Specify this class for a process whose threads run only when the system is idle. 
+                The threads of the process are preempted by the threads of any process running in 
+                a higher priority class. An example is a screen saver. The idle-priority class is 
+                inherited by child processes.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessPriorityClass.High">
+            <devdoc>
+                Specify this class for a process that performs time-critical tasks that must 
+                be executed immediately. The threads of the process preempt the threads of 
+                normal or idle priority class processes. An example is the Task List, which 
+                must respond quickly when called by the user, regardless of the load on the 
+                operating system. Use extreme care when using the high-priority class, because 
+                a high-priority class application can use nearly all available CPU time.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessPriorityClass.RealTime">
+            <devdoc>
+                Specify this class for a process that has the highest possible priority. 
+                The threads of the process preempt the threads of all other processes, 
+                including operating system processes performing important tasks. For example, 
+                a real-time process that executes for more than a very brief interval can cause 
+                disk caches not to flush or cause the mouse to be unresponsive.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessPriorityClass.BelowNormal">
+            <devdoc>
+                Indicates a process that has priority above Idle but below Normal.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessPriorityClass.AboveNormal">
+            <devdoc>
+                Indicates a process that has priority above Normal but below High.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ProcessStartInfo">
+            <devdoc>
+                A set of values used to specify a process to start.  This is
+                used in conjunction with the <see cref='T:System.Diagnostics.Process'/>
+                component.
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessStartInfo.#ctor">
+            <devdoc>
+                Default constructor.  At least the <see cref='P:System.Diagnostics.ProcessStartInfo.FileName'/>
+                property must be set before starting the process.
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessStartInfo.#ctor(System.String)">
+            <devdoc>
+                Specifies the name of the application or document that is to be started.
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessStartInfo.#ctor(System.String,System.String)">
+            <devdoc>
+                Specifies the name of the application that is to be started, as well as a set
+                of command line arguments to pass to the application.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessStartInfo.Arguments">
+            <devdoc>
+                Specifies the set of command line arguments to use when starting the application.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessStartInfo.FileName">
+            <devdoc>
+               <para>
+                  Returns or sets the application, document, or URL that is to be launched.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessStartInfo.WorkingDirectory">
+            <devdoc>
+                Returns or sets the initial directory for the process that is started.
+                Specify "" to if the default is desired.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ProcessThread">
+            <devdoc>
+               <para>
+                  Represents a Win32 thread. This can be used to obtain
+                  information about the thread, such as it's performance characteristics. This is
+                  returned from the System.Diagnostics.Process.ProcessThread property of the System.Diagnostics.Process component.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThread.#ctor(System.Boolean,System.Int32,System.Diagnostics.ThreadInfo)">
+            <devdoc>
+                Internal constructor.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.BasePriority">
+            <devdoc>
+                Returns the base priority of the thread which is computed by combining the
+                process priority class with the priority level of the associated thread.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.CurrentPriority">
+            <devdoc>
+                The current priority indicates the actual priority of the associated thread,
+                which may deviate from the base priority based on how the OS is currently
+                scheduling the thread.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.Id">
+            <devdoc>
+                Returns the unique identifier for the associated thread.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.PriorityBoostEnabled">
+            <devdoc>
+                 Returns or sets whether this thread would like a priority boost if the user interacts
+                 with user interface associated with this thread.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.PriorityLevel">
+            <devdoc>
+                Returns or sets the priority level of the associated thread.  The priority level is
+                not an absolute level, but instead contributes to the actual thread priority by
+                considering the priority class of the process.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.StartAddress">
+            <devdoc>
+                Returns the memory address of the function that was called when the associated
+                thread was started.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.ThreadState">
+            <devdoc>
+                Returns the current state of the associated thread, e.g. is it running, waiting, etc.
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.WaitReason">
+            <devdoc>
+                Returns the reason the associated thread is waiting, if any.
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThread.EnsureState(System.Diagnostics.ProcessThread.State)">
+            <devdoc>
+                Helper to check preconditions for property access.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ProcessThread.State">
+            <summary>
+                 Preconditions for accessing properties.
+            </summary>
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.IdealProcessor">
+            <summary>Sets the processor that this thread would ideally like to run on.</summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThread.ResetIdealProcessor">
+            <summary>
+            Resets the ideal processor so there is no ideal processor for this thread (e.g.
+            any processor is ideal).
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.PriorityBoostEnabledCore">
+            <summary>
+            Returns or sets whether this thread would like a priority boost if the user interacts
+            with user interface associated with this thread.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.ProcessorAffinity">
+            <summary>
+            Sets which processors the associated thread is allowed to be scheduled to run on.
+            Each processor is represented as a bit: bit 0 is processor one, bit 1 is processor
+            two, etc.  For example, the value 1 means run on processor one, 2 means run on
+            processor two, 3 means run on processor one or two.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.PriorityLevelCore">
+            <summary>
+            Returns or sets the priority level of the associated thread.  The priority level is
+            not an absolute level, but instead contributes to the actual thread priority by
+            considering the priority class of the process.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.PrivilegedProcessorTime">
+            <summary>
+            Returns the amount of time the thread has spent running code inside the operating
+            system core.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.StartTime">
+            <summary>Returns the time the associated thread was started.</summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.TotalProcessorTime">
+            <summary>
+            Returns the amount of time the associated thread has spent utilizing the CPU.
+            It is the sum of the System.Diagnostics.ProcessThread.UserProcessorTime and
+            System.Diagnostics.ProcessThread.PrivilegedProcessorTime.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThread.UserProcessorTime">
+            <summary>
+            Returns the amount of time the associated thread has spent running code
+            inside the application (not the operating system core).
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.ProcessThreadCollection">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.#ctor">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.#ctor(System.Diagnostics.ProcessThread[])">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.ProcessThreadCollection.Item(System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.Add(System.Diagnostics.ProcessThread)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.Insert(System.Int32,System.Diagnostics.ProcessThread)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.IndexOf(System.Diagnostics.ProcessThread)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.Contains(System.Diagnostics.ProcessThread)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.Remove(System.Diagnostics.ProcessThread)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.ProcessThreadCollection.CopyTo(System.Diagnostics.ProcessThread[],System.Int32)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ProcessWindowStyle">
+            <devdoc>
+                A set of values indicating how the window should appear when starting
+                a process.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWindowStyle.Normal">
+            <devdoc>
+                Show the window in a default location.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWindowStyle.Hidden">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWindowStyle.Minimized">
+            <devdoc>
+                Show the window minimized.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWindowStyle.Maximized">
+            <devdoc>
+                Show the window maximized.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ThreadInfo">
+            <devdoc>
+                This data structure contains information about a thread in a process that
+                is collected in bulk by querying the operating system.  The reason to
+                make this a separate structure from the ProcessThread component is so that we
+                can throw it away all at once when Refresh is called on the component.
+            </devdoc>
+            <internalonly/>
+        </member>
+        <member name="T:System.Diagnostics.ThreadPriorityLevel">
+            <devdoc>
+                Specifies the priority level of a thread.  The priority level is not an absolute 
+                level, but instead contributes to the actual thread priority by considering the 
+                priority class of the process.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.Idle">
+            <devdoc>
+                Idle priority
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.Lowest">
+            <devdoc>
+                Lowest priority
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.BelowNormal">
+            <devdoc>
+                Below normal priority
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.Normal">
+            <devdoc>
+                Normal priority
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.AboveNormal">
+            <devdoc>
+                Above normal priority
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.Highest">
+            <devdoc>
+                Highest priority
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadPriorityLevel.TimeCritical">
+            <devdoc>
+                Time critical priority
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ThreadState">
+            <devdoc>
+                Specifies the execution state of a thread.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Initialized">
+            <devdoc>
+                The thread has been initialized, but has not started yet.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Ready">
+            <devdoc>
+                The thread is in ready state.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Running">
+            <devdoc>
+                The thread is running.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Standby">
+            <devdoc>
+                The thread is in standby state.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Terminated">
+            <devdoc>
+                The thread has exited.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Wait">
+            <devdoc>
+                The thread is waiting.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Transition">
+            <devdoc>
+                The thread is transitioning between states.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadState.Unknown">
+            <devdoc>
+                The thread state is unknown.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.ThreadWaitReason">
+            <devdoc>
+                Specifies the reason a thread is waiting.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.Executive">
+            <devdoc>
+                Thread is waiting for the scheduler.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.FreePage">
+            <devdoc>
+                Thread is waiting for a free virtual memory page.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.PageIn">
+            <devdoc>
+                Thread is waiting for a virtual memory page to arrive in memory.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.SystemAllocation">
+            <devdoc>
+                Thread is waiting for a system allocation.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.ExecutionDelay">
+            <devdoc>
+                Thread execution is delayed.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.Suspended">
+            <devdoc>
+                Thread execution is suspended.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.UserRequest">
+            <devdoc>
+                Thread is waiting for a user request.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.EventPairHigh">
+            <devdoc>
+                Thread is waiting for event pair high.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.EventPairLow">
+            <devdoc>
+                Thread is waiting for event pair low.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.LpcReceive">
+            <devdoc>
+                Thread is waiting for a local procedure call to arrive.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.LpcReply">
+            <devdoc>
+                Thread is waiting for reply to a local procedure call to arrive.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.VirtualMemory">
+            <devdoc>
+                Thread is waiting for virtual memory.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.PageOut">
+            <devdoc>
+                Thread is waiting for a virtual memory page to be written to disk.
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.ThreadWaitReason.Unknown">
+            <devdoc>
+                Thread is waiting for an unknown reason.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.MonitoringDescriptionAttribute">
+            <summary>
+                DescriptionAttribute marks a property, event, or extender with a
+                description. Visual designers can display this description when referencing
+                the member.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.MonitoringDescriptionAttribute.#ctor(System.String)">
+            <summary>
+                Constructs a new sys description.
+            </summary>
+        </member>
+        <member name="P:System.Diagnostics.MonitoringDescriptionAttribute.Description">
+            <summary>
+                Retrieves the description text.
+            </summary>
+        </member>
+        <member name="T:System.Diagnostics.ProcessWaitState">
+            <summary>Exit information and waiting capabilities for a process.</summary>
+        </member>
+        <member name="T:System.Diagnostics.ProcessWaitState.Holder">
+            <summary>
+            Finalizable holder for a process wait state. Instantiating one
+            will ensure that a wait state object exists for a process, will
+            grab it, and will increment its ref count.  Dropping or disposing
+            one will decrement the ref count and clean up after it if the ref
+            count hits zero.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState.s_processWaitStates">
+            <summary>
+            Global table that maps process IDs of non-child Processes to the associated shared wait state information.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState.s_childProcessWaitStates">
+            <summary>
+            Global table that maps process IDs of child Processes to the associated shared wait state information.
+            </summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.AddRef(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Ensures that the mapping table contains an entry for the process ID,
+            increments its ref count, and returns it.
+            </summary>
+            <param name="processId">The process ID for which we need wait state.</param>
+            <returns>The wait state object.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.ReleaseRef">
+            <summary>
+            Decrements the ref count on the wait state object, and if it's the last one,
+            removes it from the table.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._gate">
+            <summary>
+            Synchronization object used to protect all instance state.  Any number of
+            Process and ProcessWaitHandle objects may be using a ProcessWaitState
+            instance concurrently.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._processId">
+            <summary>ID of the associated process.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._isChild">
+            <summary>Associated process is a child process.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._usesTerminal">
+            <summary>Associated process is a child that can use the terminal.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._waitInProgress">
+            <summary>If a wait operation is in progress, the Task that represents it; otherwise, null.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._outstandingRefCount">
+            <summary>The number of alive users of this object.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._exited">
+            <summary>Whether the associated process exited.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._exitCode">
+            <summary>If the process exited, it's exit code, or null if we were unable to determine one.</summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._exitTime">
+            <summary>
+            The approximate time the process exited.  We do not have the ability to know exact time a process
+            exited, so we approximate it by storing the time that we discovered it exited.
+            </summary>
+        </member>
+        <member name="F:System.Diagnostics.ProcessWaitState._exitedEvent">
+            <summary>A lazily-initialized event set when the process exits.</summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.#ctor(System.Int32,System.Boolean,System.Boolean,System.DateTime)">
+            <summary>Initialize the wait state object.</summary>
+            <param name="processId">The associated process' ID.</param>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.Dispose">
+            <summary>Releases managed resources used by the ProcessWaitState.</summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.SetExited">
+            <summary>Notes that the process has exited.</summary>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.EnsureExitedEvent">
+            <summary>Ensures an exited event has been initialized and returns it.</summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.WaitForExit(System.Int32)">
+            <summary>Waits for the associated process to exit.</summary>
+            <param name="millisecondsTimeout">The amount of time to wait, or -1 to wait indefinitely.</param>
+            <returns>true if the process exited; false if the timeout occurred.</returns>
+        </member>
+        <member name="M:System.Diagnostics.ProcessWaitState.WaitForExitAsync(System.Threading.CancellationToken)">
+            <summary>Spawns an asynchronous polling loop for process completion.</summary>
+            <param name="cancellationToken">A token to monitor to exit the polling loop.</param>
+            <returns>The task representing the loop.</returns>
+        </member>
+        <member name="T:System.Runtime.Serialization.SerializationGuard">
+            <summary>
+            Provides access to portions of the Serialization Guard APIs since they're not publicly exposed via contracts.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.SerializationGuard.CreateThrowIfDeserializationInProgressWithSwitchDelegate">
+            <summary>
+            Builds a wrapper delegate for SerializationInfo.ThrowIfDeserializationInProgress(string, ref int),
+            since it is not exposed via contracts.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.SerializationGuard.ThrowIfDeserializationInProgress(System.String,System.Int32@)">
+            <summary>
+            Provides access to the internal "ThrowIfDeserializationInProgress" method on <see cref="T:System.Runtime.Serialization.SerializationInfo"/>.
+            No-ops if the Serialization Guard feature is disabled or unavailable.
+            </summary>
+        </member>
+        <member name="T:System.Text.StringBuilderCache">
+            <summary>Provide a cached reusable instance of stringbuilder per thread.</summary>
+        </member>
+        <member name="M:System.Text.StringBuilderCache.Acquire(System.Int32)">
+            <summary>Get a StringBuilder for the specified capacity.</summary>
+            <remarks>If a StringBuilder of an appropriate size is cached, it will be returned and the cache emptied.</remarks>
+        </member>
+        <member name="M:System.Text.StringBuilderCache.Release(System.Text.StringBuilder)">
+            <summary>Place the specified builder in the cache if it is not too big.</summary>
+        </member>
+        <member name="M:System.Text.StringBuilderCache.GetStringAndRelease(System.Text.StringBuilder)">
+            <summary>ToString() the stringbuilder, Release it to the cache, and return the resulting string.</summary>
+        </member>
+        <member name="T:System.Text.ReusableTextReader">
+            <summary>Provides a reusable reader for reading all of the text from streams.</summary>
+        </member>
+        <member name="F:System.Text.ReusableTextReader._builder">
+            <summary>StringBuilder used to store intermediate text results.</summary>
+        </member>
+        <member name="F:System.Text.ReusableTextReader._decoder">
+            <summary>Decoder used to decode data read from the stream.</summary>
+        </member>
+        <member name="F:System.Text.ReusableTextReader._bytes">
+            <summary>Bytes read from the stream.</summary>
+        </member>
+        <member name="F:System.Text.ReusableTextReader._chars">
+            <summary>Temporary storage from characters converted from the bytes then written to the builder.</summary>
+        </member>
+        <member name="M:System.Text.ReusableTextReader.#ctor(System.Text.Encoding,System.Int32)">
+            <summary>Initializes a new reusable reader.</summary>
+            <param name="encoding">The Encoding to use.  Defaults to UTF8.</param>
+            <param name="bufferSize">The size of the buffer to use when reading from the stream.</param>
+        </member>
+        <member name="M:System.Text.ReusableTextReader.ReadAllText(System.IO.Stream)">
+            <summary>Read all of the text from the current position of the stream.</summary>
+        </member>
+        <member name="T:System.IO.StringParser">
+            <summary>
+            Provides a string parser that may be used instead of String.Split 
+            to avoid unnecessary string and array allocations.
+            </summary>
+        </member>
+        <member name="F:System.IO.StringParser._buffer">
+            <summary>The string being parsed.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._separator">
+            <summary>The separator character used to separate subcomponents of the larger string.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._skipEmpty">
+            <summary>true if empty subcomponents should be skipped; false to treat them as valid entries.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._startIndex">
+            <summary>The starting index from which to parse the current entry.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._endIndex">
+            <summary>The ending index that represents the next index after the last character that's part of the current entry.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.#ctor(System.String,System.Char,System.Boolean)">
+            <summary>Initialize the StringParser.</summary>
+            <param name="buffer">The string to parse.</param>
+            <param name="separator">The separator character used to separate subcomponents of <paramref name="buffer"/>.</param>
+            <param name="skipEmpty">true if empty subcomponents should be skipped; false to treat them as valid entries.  Defaults to false.</param>
+        </member>
+        <member name="M:System.IO.StringParser.MoveNext">
+            <summary>Moves to the next component of the string.</summary>
+            <returns>true if there is a next component to be parsed; otherwise, false.</returns>
+        </member>
+        <member name="M:System.IO.StringParser.MoveNextOrFail">
+            <summary>
+            Moves to the next component of the string.  If there isn't one, it throws an exception.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.MoveAndExtractNext">
+            <summary>
+            Moves to the next component of the string and returns it as a string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.StringParser.MoveAndExtractNextInOuterParens">
+            <summary>
+            Moves to the next component of the string, which must be enclosed in the only set of top-level parentheses
+            in the string.  The extracted value will be everything between (not including) those parentheses.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.StringParser.ExtractCurrent">
+            <summary>
+            Gets the current subcomponent of the string as a string.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextInt32">
+            <summary>Moves to the next component and parses it as an Int32.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextInt64">
+            <summary>Moves to the next component and parses it as an Int64.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextUInt32">
+            <summary>Moves to the next component and parses it as a UInt32.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextUInt64">
+            <summary>Moves to the next component and parses it as a UInt64.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextChar">
+            <summary>Moves to the next component and parses it as a Char.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseRaw``1(System.IO.StringParser.ParseRawFunc{``0})">
+            <summary>
+            Moves to the next component and hands the raw buffer and indexing data to a selector function
+            that can validate and return the appropriate data from the component.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.ExtractCurrentToEnd">
+            <summary>
+            Gets the current subcomponent and all remaining components of the string as a string.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.ThrowForInvalidData">
+            <summary>Throws unconditionally for invalid data.</summary>
+        </member>
+        <member name="P:System.SR.NoAssociatedProcess">
+            <summary>No process is associated with this object.</summary>
+        </member>
+        <member name="P:System.SR.ProcessIdRequired">
+            <summary>Feature requires a process identifier.</summary>
+        </member>
+        <member name="P:System.SR.NotSupportedRemote">
+            <summary>Feature is not supported for remote machines.</summary>
+        </member>
+        <member name="P:System.SR.NoProcessInfo">
+            <summary>Process has exited, so the requested information is not available.</summary>
+        </member>
+        <member name="P:System.SR.WaitTillExit">
+            <summary>Process must exit before requested information can be determined.</summary>
+        </member>
+        <member name="P:System.SR.NoProcessHandle">
+            <summary>Process was not started by this object, so requested information cannot be determined.</summary>
+        </member>
+        <member name="P:System.SR.MissingProccess">
+            <summary>Process with an Id of {0} is not running.</summary>
+        </member>
+        <member name="P:System.SR.BadMinWorkset">
+            <summary>Minimum working set size is invalid. It must be less than or equal to the maximum working set size.</summary>
+        </member>
+        <member name="P:System.SR.BadMaxWorkset">
+            <summary>Maximum working set size is invalid. It must be greater than or equal to the minimum working set size.</summary>
+        </member>
+        <member name="P:System.SR.ProcessHasExited">
+            <summary>Cannot process request because the process ({0}) has exited.</summary>
+        </member>
+        <member name="P:System.SR.ProcessHasExitedNoId">
+            <summary>Cannot process request because the process has exited.</summary>
+        </member>
+        <member name="P:System.SR.ThreadExited">
+            <summary>The request cannot be processed because the thread ({0}) has exited.</summary>
+        </member>
+        <member name="P:System.SR.ProcessDisabled">
+            <summary>Process performance counter is disabled, so the requested operation cannot be performed.</summary>
+        </member>
+        <member name="P:System.SR.WaitReasonUnavailable">
+            <summary>WaitReason is only available if the ThreadState is Wait.</summary>
+        </member>
+        <member name="P:System.SR.NotSupportedRemoteThread">
+            <summary>Feature is not supported for threads on remote computers.</summary>
+        </member>
+        <member name="P:System.SR.CouldntConnectToRemoteMachine">
+            <summary>Couldn't connect to remote machine.</summary>
+        </member>
+        <member name="P:System.SR.CouldntGetProcessInfos">
+            <summary>Couldn't get process information from performance counter.</summary>
+        </member>
+        <member name="P:System.SR.InputIdleUnkownError">
+            <summary>WaitForInputIdle failed.  This could be because the process does not have a graphical interface.</summary>
+        </member>
+        <member name="P:System.SR.FileNameMissing">
+            <summary>Cannot start process because a file name has not been provided.</summary>
+        </member>
+        <member name="P:System.SR.EnumProcessModuleFailed">
+            <summary>Unable to enumerate the process modules.</summary>
+        </member>
+        <member name="P:System.SR.EnumProcessModuleFailedDueToWow">
+            <summary>A 32 bit processes cannot access modules of a 64 bit process.</summary>
+        </member>
+        <member name="P:System.SR.NoAsyncOperation">
+            <summary>No async read operation is in progress on the stream.</summary>
+        </member>
+        <member name="P:System.SR.InvalidApplication">
+            <summary>The specified executable is not a valid application for this OS platform.</summary>
+        </member>
+        <member name="P:System.SR.StandardOutputEncodingNotAllowed">
+            <summary>StandardOutputEncoding is only supported when standard output is redirected.</summary>
+        </member>
+        <member name="P:System.SR.StandardErrorEncodingNotAllowed">
+            <summary>StandardErrorEncoding is only supported when standard error is redirected.</summary>
+        </member>
+        <member name="P:System.SR.CantGetStandardOut">
+            <summary>StandardOut has not been redirected or the process hasn't started yet.</summary>
+        </member>
+        <member name="P:System.SR.CantGetStandardIn">
+            <summary>StandardIn has not been redirected.</summary>
+        </member>
+        <member name="P:System.SR.CantGetStandardError">
+            <summary>StandardError has not been redirected.</summary>
+        </member>
+        <member name="P:System.SR.CantMixSyncAsyncOperation">
+            <summary>Cannot mix synchronous and asynchronous operation on process stream.</summary>
+        </member>
+        <member name="P:System.SR.CantRedirectStreams">
+            <summary>The Process object must have the UseShellExecute property set to false in order to redirect IO streams.</summary>
+        </member>
+        <member name="P:System.SR.DirectoryNotValidAsInput">
+            <summary>The FileName property should not be a directory unless UseShellExecute is set.</summary>
+        </member>
+        <member name="P:System.SR.PendingAsyncOperation">
+            <summary>An async read operation has already been started on the stream.</summary>
+        </member>
+        <member name="P:System.SR.InvalidParameter">
+            <summary>Invalid value '{1}' for parameter '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.CategoryHelpCorrupt">
+            <summary>Cannot load Category Help data because an invalid index '{0}' was read from the registry.</summary>
+        </member>
+        <member name="P:System.SR.CounterNameCorrupt">
+            <summary>Cannot load Counter Name data because an invalid index '{0}' was read from the registry.</summary>
+        </member>
+        <member name="P:System.SR.CounterDataCorrupt">
+            <summary>Cannot load Performance Counter data because an unexpected registry key value type was read from '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.CantGetProcessStartInfo">
+            <summary>Process was not started by this object, so requested information cannot be determined.</summary>
+        </member>
+        <member name="P:System.SR.CantSetProcessStartInfo">
+            <summary>Process is already associated with a real process, so the requested operation cannot be performed.</summary>
+        </member>
+        <member name="P:System.SR.CantGetAllPids">
+            <summary>Could not get all running Process IDs.</summary>
+        </member>
+        <member name="P:System.SR.NegativePidNotSupported">
+            <summary>Process IDs cannot be negative.</summary>
+        </member>
+        <member name="P:System.SR.ProcessorAffinityNotSupported">
+            <summary>Processor affinity for processes or threads is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.ProcessStartWithPasswordAndDomainNotSupported">
+            <summary>Starting a process as another user with a specified password and domain is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.ProcessStartSingleFeatureNotSupported">
+            <summary>The {0} property is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.RUsageFailure">
+            <summary>Failed to set or retrieve rusage information. See the error code for OS-specific error information.</summary>
+        </member>
+        <member name="P:System.SR.MinimumWorkingSetNotSupported">
+            <summary>Setting the minimum working set is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.OsxExternalProcessWorkingSetNotSupported">
+            <summary>Getting or setting the working set limits on other processes is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.ThreadPriorityNotSupported">
+            <summary>Getting or setting the thread priority is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.ProcessInformationUnavailable">
+            <summary>Unable to retrieve the specified information about the process or thread.  It may have exited or may be privileged.</summary>
+        </member>
+        <member name="P:System.SR.RemoteMachinesNotSupported">
+            <summary>Access to processes on remote machines is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.CantSetDuplicatePassword">
+            <summary>ProcessStartInfo.Password and ProcessStartInfo.PasswordInClearText cannot both be set. Use only one of them.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentNull_Array">
+            <summary>Array cannot be null.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_IndexCountBuffer">
+            <summary>Index and count must refer to a location within the buffer.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_IndexCount">
+            <summary>Index and count must refer to a location within the string.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_Index">
+            <summary>Index was out of range. Must be non-negative and less than the size of the collection.</summary>
+        </member>
+        <member name="P:System.SR.Argument_EncodingConversionOverflowBytes">
+            <summary>The output byte buffer is too small to contain the encoded data, encoding '{0}' fallback '{1}'.</summary>
+        </member>
+        <member name="P:System.SR.Argument_EncodingConversionOverflowChars">
+            <summary>The output char buffer is too small to contain the decoded characters, encoding '{0}' fallback '{1}'.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_GetByteCountOverflow">
+            <summary>Too many characters. The resulting number of bytes is larger than what can be returned as an int.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_GetCharCountOverflow">
+            <summary>Too many bytes. The resulting number of chars is larger than what can be returned as an int.</summary>
+        </member>
+        <member name="P:System.SR.Argument_InvalidCharSequenceNoIndex">
+            <summary>String contains invalid Unicode code points.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_NeedNonNegNum">
+            <summary>Non-negative number required.</summary>
+        </member>
+        <member name="P:System.SR.CantStartAsUser">
+            <summary>The Process object must have the UseShellExecute property set to false in order to start a process as a user.</summary>
+        </member>
+        <member name="P:System.SR.CantUseEnvVars">
+            <summary>The Process object must have the UseShellExecute property set to false in order to use environment variables.</summary>
+        </member>
+        <member name="P:System.SR.UseShellExecuteNotSupported">
+            <summary>UseShellExecute is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.GetProcessInfoNotSupported">
+            <summary>Retrieving information about local processes is not supported on this platform.</summary>
+        </member>
+        <member name="P:System.SR.StandardInputEncodingNotAllowed">
+            <summary>StandardInputEncoding is only supported when standard input is redirected.</summary>
+        </member>
+        <member name="P:System.SR.UserDoesNotExist">
+            <summary>User with name '{0}' was not found.</summary>
+        </member>
+        <member name="P:System.SR.UserGroupsCannotBeDetermined">
+            <summary>Cannot determine groups that user '{0}' belongs to.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentAndArgumentListInitialized">
+            <summary>Only one of Arguments or ArgumentList may be used.</summary>
+        </member>
+        <member name="P:System.SR.KillEntireProcessTree_DisallowedBecauseTreeContainsCallingProcess">
+            <summary>Cannot be used to terminate a process tree containing the calling process.</summary>
+        </member>
+        <member name="P:System.SR.KillEntireProcessTree_TerminationIncomplete">
+            <summary>Not all processes in process tree could be terminated.</summary>
+        </member>
+        <member name="P:System.SR.InvalidSysctl">
+            <summary>sysctl {0} failed with {1} error.</summary>
+        </member>
+        <member name="T:Interop.Error">
+            <summary>Common Unix errno error codes.</summary>
+        </member>
+        <member name="M:Interop.Sys.GetPriority(Interop.Sys.PriorityWhich,System.Int32,System.Int32@)">
+            <summary>
+            Wrapper around getpriority since getpriority can return from -20 to 20; therefore,
+            we cannot rely on the return value for success and failure. This wrapper makes the
+            getpriority call to act more naturally where the return value is the actual error
+            value (or 0 if success) instead of forcing the caller to retrieve the last error.
+            </summary>
+            <returns>Returns 0 on success; otherwise, returns the errno value</returns>
+        </member>
+        <member name="M:Interop.Sys.ReadLink(System.String,System.Byte[],System.Int32)">
+            <summary>
+            Takes a path to a symbolic link and attempts to place the link target path into the buffer. If the buffer is too
+            small, the path will be truncated. No matter what, the buffer will not be null terminated. 
+            </summary>
+            <param name="path">The path to the symlink</param>
+            <param name="buffer">The buffer to hold the output path</param>
+            <param name="bufferSize">The size of the buffer</param>
+            <returns>
+            Returns the number of bytes placed into the buffer on success; bufferSize if the buffer is too small; and -1 on error.
+            </returns>
+        </member>
+        <member name="M:Interop.Sys.ReadLink(System.String)">
+            <summary>
+            Takes a path to a symbolic link and returns the link target path.
+            </summary>
+            <param name="path">The path to the symlink</param>
+            <returns>
+            Returns the link to the target path on success; and null otherwise.
+            </returns>
+        </member>
+        <member name="M:Interop.Sys.WaitIdAnyExitedNoHangNoWait">
+            <summary>
+            Returns the pid of a terminated child without reaping it.
+            </summary>
+            <returns>
+            1) returns the process id of a terminated child process
+            2) if no children are terminated, 0 is returned
+            3) on error, -1 is returned
+            </returns>
+        </member>
+        <member name="M:Interop.Sys.WaitPidExitedNoHang(System.Int32,System.Int32@)">
+            <summary>
+            Reaps a terminated child.
+            </summary>
+            <returns>
+            1) when a child is reaped, its process id is returned
+            2) if pid is not a child or there are no unwaited-for children, -1 is returned (errno=ECHILD)
+            3) if the child has not yet terminated, 0 is returned
+            4) on error, -1 is returned.
+            </returns>
+        </member>
+        <member name="F:Interop.cgroups.ProcMountInfoFilePath">
+            <summary>Path to mountinfo file in procfs for the current process.</summary>
+        </member>
+        <member name="F:Interop.cgroups.ProcCGroupFilePath">
+            <summary>Path to cgroup directory in procfs for the current process.</summary>
+        </member>
+        <member name="F:Interop.cgroups.s_cgroupMemoryPath">
+            <summary>Path to the found cgroup location, or null if it couldn't be found.</summary>
+        </member>
+        <member name="F:Interop.cgroups.s_cgroupMemoryLimitPath">
+            <summary>Path to the found cgroup memory limit_in_bytes path, or null if it couldn't be found.</summary>
+        </member>
+        <member name="M:Interop.cgroups.TryGetMemoryLimit(System.UInt64@)">
+            <summary>Tries to read the memory limit from the cgroup memory location.</summary>
+            <param name="limit">The read limit, or 0 if it couldn't be read.</param>
+            <returns>true if the limit was read successfully; otherwise, false.</returns>
+        </member>
+        <member name="M:Interop.cgroups.TryReadMemoryValueFromFile(System.String,System.UInt64@)">
+            <summary>Tries to parse a memory limit from the specified file.</summary>
+            <param name="path">The path to the file to parse.</param>
+            <param name="result">The parsed result, or 0 if it couldn't be parsed.</param>
+            <returns>true if the value was read successfully; otherwise, false.</returns>
+        </member>
+        <member name="M:Interop.cgroups.FindCGroupPath(System.String)">
+            <summary>Find the cgroup path for the specified subsystem.</summary>
+            <param name="subsystem">The subsystem, e.g. "memory".</param>
+            <returns>The cgroup path if found; otherwise, null.</returns>
+        </member>
+        <member name="M:Interop.cgroups.TryFindHierarchyMount(System.String,System.String@,System.String@)">
+            <summary>Find the cgroup mount information for the specified subsystem.</summary>
+            <param name="subsystem">The subsystem, e.g. "memory".</param>
+            <param name="root">The path of the directory in the filesystem which forms the root of this mount; null if not found.</param>
+            <param name="path">The path of the mount point relative to the process's root directory; null if not found.</param>
+            <returns>true if the mount was found; otherwise, null.</returns>
+        </member>
+        <member name="M:Interop.cgroups.TryFindCGroupPathForSubsystem(System.String,System.String@)">
+            <summary>Find the cgroup relative path for the specified subsystem.</summary>
+            <param name="subsystem">The subsystem, e.g. "memory".</param>
+            <param name="path">The found path, or null if it couldn't be found.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

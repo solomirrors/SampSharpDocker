@@ -1,0 +1,218 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Runtime.InteropServices</name>
+    </assembly>
+    <members>
+        <member name="T:System.Runtime.InteropServices.ComTypes.ADVF">
+            <remarks>
+            Note: ADVF_ONLYONCE and ADVF_PRIMEFIRST values conform with objidl.dll but are backwards from 
+            the Platform SDK documentation as of 07/21/2003.
+            https://docs.microsoft.com/en-us/windows/desktop/api/objidl/ne-objidl-tagadvf.
+            </remarks>
+        </member>
+        <member name="T:System.Runtime.InteropServices.ComTypes.IAdviseSink">
+            <summary>
+            The IAdviseSink interface enables containers and other objects to 
+            receive notifications of data changes, view changes, and compound-document 
+            changes occurring in objects of interest. Container applications, for 
+            example, require such notifications to keep cached presentations of their 
+            linked and embedded objects up-to-date. Calls to IAdviseSink methods are 
+            asynchronous, so the call is sent and then the next instruction is executed 
+            without waiting for the call's return.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IAdviseSink.OnDataChange(System.Runtime.InteropServices.ComTypes.FORMATETC@,System.Runtime.InteropServices.ComTypes.STGMEDIUM@)">
+            <summary>
+            Called by the server to notify a data object's currently registered 
+            advise sinks that data in the object has changed.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IAdviseSink.OnViewChange(System.Int32,System.Int32)">
+            <summary>
+            Notifies an object's registered advise sinks that its view has changed.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IAdviseSink.OnRename(System.Runtime.InteropServices.ComTypes.IMoniker)">
+            <summary>
+            Called by the server to notify all registered advisory sinks that 
+            the object has been renamed.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IAdviseSink.OnSave">
+            <summary>
+            Called by the server to notify all registered advisory sinks that 
+            the object has been saved.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IAdviseSink.OnClose">
+            <summary>
+            Called by the server to notify all registered advisory sinks that the 
+            object has changed from the running to the loaded state.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.InteropServices.ComTypes.IDataObject">
+            <summary>
+                The IDataObject interface specifies methods that enable data transfer
+                and notification of changes in data. Data transfer methods specify
+                the format of the transferred data along with the medium through
+                which the data is to be transferred. Optionally, the data can be
+                rendered for a specific target device. In addition to methods for
+                retrieving and storing data, the IDataObject interface specifies
+                methods for enumerating available formats and managing connections
+                to advisory sinks for handling change notifications.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.GetData(System.Runtime.InteropServices.ComTypes.FORMATETC@,System.Runtime.InteropServices.ComTypes.STGMEDIUM@)">
+            <summary>
+                Called by a data consumer to obtain data from a source data object.
+                The GetData method renders the data described in the specified FORMATETC
+                structure and transfers it through the specified STGMEDIUM structure.
+                The caller then assumes responsibility for releasing the STGMEDIUM structure.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.GetDataHere(System.Runtime.InteropServices.ComTypes.FORMATETC@,System.Runtime.InteropServices.ComTypes.STGMEDIUM@)">
+            <summary>
+                Called by a data consumer to obtain data from a source data object.
+                This method differs from the GetData method in that the caller must
+                allocate and free the specified storage medium.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.QueryGetData(System.Runtime.InteropServices.ComTypes.FORMATETC@)">
+            <summary>
+                Determines whether the data object is capable of rendering the data
+                described in the FORMATETC structure. Objects attempting a paste or
+                drop operation can call this method before calling IDataObject::GetData
+                to get an indication of whether the operation may be successful.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.GetCanonicalFormatEtc(System.Runtime.InteropServices.ComTypes.FORMATETC@,System.Runtime.InteropServices.ComTypes.FORMATETC@)">
+            <summary>
+                Provides a standard FORMATETC structure that is logically equivalent to one that is more
+                complex. You use this method to determine whether two different
+                FORMATETC structures would return the same data, removing the need
+                for duplicate rendering.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.SetData(System.Runtime.InteropServices.ComTypes.FORMATETC@,System.Runtime.InteropServices.ComTypes.STGMEDIUM@,System.Boolean)">
+            <summary>
+                Called by an object containing a data source to transfer data to
+                the object that implements this method.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.EnumFormatEtc(System.Runtime.InteropServices.ComTypes.DATADIR)">
+            <summary>
+                Creates an object for enumerating the FORMATETC structures for a
+                data object. These structures are used in calls to IDataObject::GetData
+                or IDataObject::SetData.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.DAdvise(System.Runtime.InteropServices.ComTypes.FORMATETC@,System.Runtime.InteropServices.ComTypes.ADVF,System.Runtime.InteropServices.ComTypes.IAdviseSink,System.Int32@)">
+            <summary>
+                Called by an object supporting an advise sink to create a connection between
+                a data object and the advise sink. This enables the advise sink to be
+                notified of changes in the data of the object.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.DUnadvise(System.Int32)">
+            <summary>
+                Destroys a notification connection that had been previously set up.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IDataObject.EnumDAdvise(System.Runtime.InteropServices.ComTypes.IEnumSTATDATA@)">
+            <summary>
+                Creates an object that can be used to enumerate the current advisory connections.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.InteropServices.ComTypes.IEnumFORMATETC">
+            <summary>
+                The IEnumFORMATETC interface is used to enumerate an array of FORMATETC 
+                structures. IEnumFORMATETC has the same methods as all enumerator interfaces: 
+                Next, Skip, Reset, and Clone.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Next(System.Int32,System.Runtime.InteropServices.ComTypes.FORMATETC[],System.Int32[])">
+            <summary>
+                Retrieves the next celt items in the enumeration sequence. If there are 
+                fewer than the requested number of elements left in the sequence, it 
+                retrieves the remaining elements. The number of elements actually 
+                retrieved is returned through pceltFetched (unless the caller passed 
+                in NULL for that parameter).
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Skip(System.Int32)">
+            <summary>
+                Skips over the next specified number of elements in the enumeration sequence.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Reset">
+            <summary>
+                Resets the enumeration sequence to the beginning.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Clone(System.Runtime.InteropServices.ComTypes.IEnumFORMATETC@)">
+            <summary>
+                Creates another enumerator that contains the same enumeration state as 
+                the current one. Using this function, a client can record a particular 
+                point in the enumeration sequence and then return to that point at a 
+                later time. The new enumerator supports the same interface as the original one.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.InteropServices.ComTypes.IEnumSTATDATA">
+            <summary>
+            The IEnumSTATDATA interface is used to enumerate through an array of
+            STATDATA structures, which contain advisory connection information for
+            a data object. IEnumSTATDATA has the same methods as all enumerator
+            interfaces: Next, Skip, Reset, and Clone.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumSTATDATA.Next(System.Int32,System.Runtime.InteropServices.ComTypes.STATDATA[],System.Int32[])">
+            <summary>
+            Retrieves the next celt items in the enumeration sequence. If there are
+            fewer than the requested number of elements left in the sequence, it
+            retrieves the remaining elements. The number of elements actually
+            retrieved is returned through pceltFetched (unless the caller passed
+            in NULL for that parameter).
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumSTATDATA.Skip(System.Int32)">
+            <summary>
+            Skips over the next specified number of elements in the enumeration sequence.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumSTATDATA.Reset">
+            <summary>
+            Resets the enumeration sequence to the beginning.
+            </summary>
+        </member>
+        <member name="M:System.Runtime.InteropServices.ComTypes.IEnumSTATDATA.Clone(System.Runtime.InteropServices.ComTypes.IEnumSTATDATA@)">
+            <summary>
+            Creates another enumerator that contains the same enumeration state as
+            the current one. Using this function, a client can record a particular
+            point in the enumeration sequence and then return to that point at a
+            later time. The new enumerator supports the same interface as the original one.
+            </summary>
+        </member>
+        <member name="P:System.SR.InvalidOperation_HCCountOverflow">
+            <summary>Handle collector count overflows or underflows.</summary>
+        </member>
+        <member name="P:System.SR.Arg_NeedNonNegNumRequired">
+            <summary>Non-negative number required.</summary>
+        </member>
+        <member name="P:System.SR.Arg_InvalidThreshold">
+            <summary>maximumThreshold cannot be less than initialThreshold.</summary>
+        </member>
+        <member name="P:System.SR.InvalidOperation_NoComEventInterfaceAttribute">
+            <summary>Event invocation for COM objects requires the declaring interface of the event to be attributed with ComEventInterfaceAttribute.</summary>
+        </member>
+        <member name="P:System.SR.AmbiguousMatch_MultipleEventInterfaceAttributes">
+            <summary>More than one ComEventInterfaceAttribute was found on the declaring interface of the event.</summary>
+        </member>
+        <member name="P:System.SR.InvalidOperation_NoDispIdAttribute">
+            <summary>Event invocation for COM objects requires event to be attributed with DispIdAttribute.</summary>
+        </member>
+        <member name="P:System.SR.StandardOleMarshalObjectGetMarshalerFailed">
+            <summary>Failed to get marshaler for IID {0}.</summary>
+        </member>
+    </members>
+</doc>

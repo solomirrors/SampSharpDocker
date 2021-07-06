@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Runtime.Serialization.Formatters</name>
+    </assembly>
+    <members>
+        <member name="M:System.Runtime.Serialization.ObjectManager.ResolveObjectReference(System.Runtime.Serialization.ObjectHolder)">
+            <summary>
+            Unfortunately, an ObjectReference could actually be a reference to another
+            object reference and we don't know how far we have to tunnel until we can find the real object.  While
+            we're still getting instances of IObjectReference back and we're still getting new objects, keep calling
+            GetRealObject.  Once we've got the new object, take care of all of the fixups
+            that we can do now that we've got it.
+            </summary>
+            <param name="holder"></param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectManager.DoNewlyRegisteredObjectFixups(System.Runtime.Serialization.ObjectHolder)">
+            <summary>
+            This is called immediately after we register a new object.  Walk that objects
+            dependency list (if it has one) and decrement the counters on each object for
+            the number of unsatisfiable references.  If the count reaches 0, go ahead
+            and process the object.
+            </summary>
+            <param name="holder">dependencies The list of dependent objects</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectManager.CompleteISerializableObject(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Completes an object implementing ISerializable.  This will involve calling that
+            objects constructor which takes an instance of ISerializable and a StreamingContext.
+            </summary>
+            <param name="obj">The object to be completed.</param>
+            <param name="info">The SerializationInfo containing all info for obj.</param>
+            <param name="context">The streaming context in which the serialization is taking place.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectManager.RegisterFixup(System.Runtime.Serialization.FixupHolder,System.Int64,System.Int64)">
+            <summary>
+            Do the actual grunt work of recording a fixup and registering the dependency.
+            Create the necessary ObjectHolders and use them to do the addition.
+            </summary>
+            <param name="fixup">The FixupHolder to be added.</param>
+            <param name="objectRequired">The id of the object required to do the fixup.</param>
+            <param name="objectToBeFixed">The id of the object requiring the fixup.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectHolder.RemoveDependency(System.Int64)">
+            <summary>
+            Removes a dependency of the object represented in this holder.
+            This is normally the result of the dependency having been filled when
+            the object is going to be only partially completed.  If we plan to fully
+            update the object, we do not take the work to do this.
+            </summary>
+            <param name="id">The id of the object for which to remove the dependency.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectHolder.AddFixup(System.Runtime.Serialization.FixupHolder,System.Runtime.Serialization.ObjectManager)">
+            <summary>
+            Note a fixup that has to be done before this object can be completed.
+            Fixups are things that need to happen when other objects in the graph 
+            are added.  Dependencies are things that need to happen when this object
+            is added.
+            </summary>
+            <param name="fixup">The fixup holder containing enough information to complete the fixup.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectHolder.UpdateDescendentDependencyChain(System.Int32,System.Runtime.Serialization.ObjectManager)">
+            <summary>
+            Updates the total list of dependencies to account for a fixup being added
+            or completed in a child value class.  This will update all value classes
+            containing that child and the object which contains all of them.  
+            </summary>
+            <param name="amount">the amount by which to increment (or decrement) the dependency chain.</param>
+            <param name="manager">The ObjectManager used to lookup other objects up the chain.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectHolder.AddDependency(System.Int64)">
+            <summary>
+            Note an object which is dependent on the one which will be contained in
+            this ObjectHolder.  Dependencies should only be added if the object hasn't
+            yet been added.  NB: An incomplete object counts as having no object.
+            </summary>
+            <param name="dependentObject">the id of the object which is dependent on this object being provided.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectHolder.UpdateData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.ISerializationSurrogate,System.Int64,System.Reflection.FieldInfo,System.Int32[],System.Runtime.Serialization.ObjectManager)">
+            <summary>
+            Update the data in the object holder.  This should be called when the object
+            is finally registered.  Presumably the ObjectHolder was created to track 
+            some dependencies or preregistered fixups and we now need to actually record the
+            object and other associated data.  We take this opportunity to set the flags
+            so that we can do some faster processing in the future.
+            </summary>
+            <param name="obj">The object being held by this object holder. (This should no longer be null).</param>
+            <param name="field">The SerializationInfo associated with this object, only required if we're doing delayed fixups.</param>
+            <param name="manager">the ObjectManager being used to track these ObjectHolders.</param>
+            <param name="surrogate">The surrogate handling this object.  May be null.</param>
+            <param name="idOfContainer">The id of the object containing this one if this is a valuetype.</param>
+        </member>
+        <member name="M:System.Runtime.Serialization.ObjectHolder.SetFlags">
+            <summary>
+            An internal-only routine to set the flags based upon the data contained in 
+            the ObjectHolder
+            </summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.SerializationEvents.InvokeOnDelegate(System.Object,System.Runtime.Serialization.StreamingContext,System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>Invoke all methods.</summary>
+        </member>
+        <member name="M:System.Runtime.Serialization.SerializationEvents.AddOnDelegate(System.Object,System.Runtime.Serialization.SerializationEventHandler,System.Collections.Generic.List{System.Reflection.MethodInfo})">
+            <summary>Add all methods to a delegate.</summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.ValueTypeFixupInfo._containerID">
+            <summary>
+            The id of the containing body.  This could be a regular
+            object, another value type, or an array.  For obvious reasons,
+            the containing body can never have both a FieldInfo and 
+            an array index.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.ValueTypeFixupInfo._parentField">
+            <summary>
+            The FieldInfo into the containing body.  This will only 
+            apply if the containing body is a field info or another
+            value type.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.Serialization.ValueTypeFixupInfo._parentIndex">
+            <summary>
+            The array index of the index into the parent.  This will only
+            apply if the containing body is an array.
+            </summary>
+        </member>
+        <member name="P:System.SR.Arg_HTCapacityOverflow">
+            <summary>Hashtable's capacity overflowed and went negative. Check load factor, capacity and the current size of the table.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_NonSerType">
+            <summary>Type '{0}' in Assembly '{1}' is not marked as serializable.</summary>
+        </member>
+        <member name="P:System.SR.Argument_DataLengthDifferent">
+            <summary>Parameters 'members' and 'data' must have the same length.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentNull_NullMember">
+            <summary>Member at position {0} was null.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_UnknownMemberInfo">
+            <summary>Only FieldInfo, PropertyInfo, and SerializationMemberInfo are recognized.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_NoID">
+            <summary>Object has never been assigned an objectID.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TooManyElements">
+            <summary>The internal array cannot expand to greater than Int32.MaxValue elements.</summary>
+        </member>
+        <member name="P:System.SR.Argument_InvalidFieldInfo">
+            <summary>The FieldInfo object is not valid.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_NeverSeen">
+            <summary>A fixup is registered to the object with ID {0}, but the object does not appear in the graph.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_IORIncomplete">
+            <summary>The object with ID {0} implements the IObjectReference interface for which all dependencies cannot be resolved. The likely cause is two instances of IObjectReference that have a mutual dependency on each other.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ObjectNotSupplied">
+            <summary>The object with ID {0} was referenced in a fixup but does not exist.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_NotCyclicallyReferenceableSurrogate">
+            <summary>{0}.SetObjectData returns a value that is neither null nor equal to the first parameter. Such Surrogates cannot be part of cyclical reference.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TooManyReferences">
+            <summary>The implementation of the IObjectReference interface returns too many nested references to other objects that implement IObjectReference.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_MissingObject">
+            <summary>The object with ID {0} was referenced in a fixup but has not been registered.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_InvalidFixupDiscovered">
+            <summary>A fixup on an object implementing ISerializable or having a surrogate was discovered for an object which does not have a SerializationInfo available.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TypeLoadFailure">
+            <summary>Unable to load type {0} required for deserialization.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ValueTypeFixup">
+            <summary>ValueType fixup on Arrays is not implemented.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_PartialValueTypeFixup">
+            <summary>Fixing up a partially available ValueType chain is not implemented.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_UnableToFixup">
+            <summary>Cannot perform fixup.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_ObjectID">
+            <summary>objectID cannot be less than or equal to zero.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_RegisterTwice">
+            <summary>An object cannot be registered twice.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_NotISer">
+            <summary>The given object does not implement the ISerializable interface.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ConstructorNotFound">
+            <summary>The constructor to deserialize an object of type '{0}' was not found.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_IncorrectNumberOfFixups">
+            <summary>The ObjectManager found an invalid number of fixups. This usually indicates a problem in the Formatter.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_InvalidFixupType">
+            <summary>A member fixup was registered for an object which implements ISerializable or has a surrogate. In this situation, a delayed fixup must be used.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_IdTooSmall">
+            <summary>Object IDs must be greater than zero.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ParentChildIdentical">
+            <summary>The ID of the containing object cannot be the same as the object ID.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_InvalidType">
+            <summary>Only system-provided types can be passed to the GetUninitializedObject method. '{0}' is not a valid instance of a type.</summary>
+        </member>
+        <member name="P:System.SR.Argument_MustSupplyParent">
+            <summary>When supplying the ID of a containing object, the FieldInfo that identifies the current field within that object must also be supplied.</summary>
+        </member>
+        <member name="P:System.SR.Argument_MemberAndArray">
+            <summary>Cannot supply both a MemberInfo and an Array to indicate the parent of a value type.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_CorruptedStream">
+            <summary>Invalid BinaryFormatter stream.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_Stream">
+            <summary>Attempting to deserialize an empty stream.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_BinaryHeader">
+            <summary>Binary stream '{0}' does not contain a valid BinaryHeader. Possible causes are invalid stream or object version change between serialization and deserialization.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TypeExpected">
+            <summary>Invalid expected type.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_StreamEnd">
+            <summary>End of Stream encountered before parsing was completed.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_CrossAppDomainError">
+            <summary>Cross-AppDomain BinaryFormatter error; expected '{0}' but received '{1}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_Map">
+            <summary>No map for object '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_Assembly">
+            <summary>No assembly information is available for object on the wire, '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ObjectTypeEnum">
+            <summary>Invalid ObjectTypeEnum {0}.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_AssemblyId">
+            <summary>No assembly ID for object type '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ArrayType">
+            <summary>Invalid array type '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TypeCode">
+            <summary>Invalid type code in stream '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TypeWrite">
+            <summary>Invalid write type request '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TypeRead">
+            <summary>Invalid read type request '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_AssemblyNotFound">
+            <summary>Unable to find assembly '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_InvalidFormat">
+            <summary>The input stream is not a valid binary format. The starting contents (in bytes) are: {0} ...</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TopObject">
+            <summary>No top object.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_XMLElement">
+            <summary>Invalid element '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TopObjectInstantiate">
+            <summary>Top object cannot be instantiated for element '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ArrayTypeObject">
+            <summary>Array element type is Object, 'dt' attribute is null.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_TypeMissing">
+            <summary>Type is missing for member of type Object '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ObjNoID">
+            <summary>Object {0} has never been assigned an objectID.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_SerMemberInfo">
+            <summary>MemberInfo type {0} cannot be serialized.</summary>
+        </member>
+        <member name="P:System.SR.Argument_MustSupplyContainer">
+            <summary>When supplying a FieldInfo for fixing up a nested type, a valid ID for that containing object must also be supplied.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ParseError">
+            <summary>Parse error. Current element is not compatible with the next element, {0}.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ISerializableMemberInfo">
+            <summary>MemberInfo requested for ISerializable type.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_MemberInfo">
+            <summary>MemberInfo cannot be obtained for ISerialized Object '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_ISerializableTypes">
+            <summary>Types not available for ISerializable object '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_MissingMember">
+            <summary>Member '{0}' in class '{1}' is not present in the serialized stream and is not marked with {2}.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_NoMemberInfo">
+            <summary>No MemberInfo for Object {0}.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_DuplicateSelector">
+            <summary>Type {0} and the types derived from it (such as {1}) are not permitted to be deserialized at this security level.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_SurrogateCycleInArgument">
+            <summary>Selector contained a cycle.</summary>
+        </member>
+        <member name="P:System.SR.Serialization_SurrogateCycle">
+            <summary>Adding selector will introduce a cycle.</summary>
+        </member>
+        <member name="P:System.SR.IO_EOF_ReadBeyondEOF">
+            <summary>Unable to read beyond the end of the stream.</summary>
+        </member>
+    </members>
+</doc>

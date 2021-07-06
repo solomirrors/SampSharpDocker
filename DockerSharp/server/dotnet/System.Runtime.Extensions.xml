@@ -1,0 +1,394 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Runtime.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:System.IO.BufferedStream">
+             <summary>
+             One of the design goals here is to prevent the buffer from getting in the way and slowing
+             down underlying stream accesses when it is not needed. If you always read &amp; write for sizes
+             greater than the internal buffer size, then this class may not even allocate the internal buffer.
+             See a large comment in Write for the details of the write buffer heuristic.
+             
+             This class buffers reads &amp; writes in a shared buffer.
+             (If you maintained two buffers separately, one operation would always trash the other buffer
+             anyways, so we might as well use one buffer.) 
+             The assumption here is you will almost always be doing a series of reads or writes, but rarely
+             alternate between the two of them on the same stream.
+            
+             Class Invariants:
+             The class has one buffer, shared for reading &amp; writing.
+             It can only be used for one or the other at any point in time - not both.
+             The following should be true:
+             <![CDATA[
+               * 0 <= _readPos <= _readLen < _bufferSize
+               * 0 <= _writePos < _bufferSize
+               * _readPos == _readLen && _readPos > 0 implies the read buffer is valid, but we're at the end of the buffer.
+               * _readPos == _readLen == 0 means the read buffer contains garbage.
+               * Either _writePos can be greater than 0, or _readLen & _readPos can be greater than zero,
+                 but neither can be greater than zero at the same time.
+              ]]>
+             This class will never cache more bytes than the max specified buffer size.
+             However, it may use a temporary buffer of up to twice the size in order to combine several IO operations on
+             the underlying stream into a single operation. This is because we assume that memory copies are significantly
+             faster than IO operations on the underlying stream (if this was not true, using buffering is never appropriate).
+             The max size of this "shadow" buffer is limited as to not allocate it on the LOH.
+             Shadowing is always transient. Even when using this technique, this class still guarantees that the number of
+             bytes cached (not yet written to the target stream or not yet consumed by the user) is never larger than the 
+             actual specified buffer size.
+             </summary>
+        </member>
+        <member name="F:System.IO.BufferedStream.MaxShadowBufferSize">
+            <summary><code>MaxShadowBufferSize</code> is chosen such that shadow buffers are not allocated on the Large Object Heap.
+            Currently, an object is allocated on the LOH if it is larger than 85000 bytes. See LARGE_OBJECT_SIZE in src/gc/gc.h
+            We will go with exactly 80 Kbytes, although this is somewhat arbitrary.</summary>
+        </member>
+        <member name="M:System.IO.BufferedStream.ClearReadBufferBeforeWrite">
+            <summary>
+            Called by Write methods to clear the Read Buffer
+            </summary>
+        </member>
+        <member name="M:System.IO.BufferedStream.ReadFromUnderlyingStreamAsync(System.Memory{System.Byte},System.Threading.CancellationToken,System.Int32,System.Threading.Tasks.Task)">
+            <summary>BufferedStream should be as thin a wrapper as possible. We want ReadAsync to delegate to
+            ReadAsync of the underlying _stream rather than calling the base Stream which implements the one in terms of the other.
+            This allows BufferedStream to affect the semantics of the stream it wraps as little as possible. </summary>
+            <returns>-2 if _bufferSize was set to 0 while waiting on the semaphore; otherwise num of bytes read.</returns>
+        </member>
+        <member name="M:System.IO.BufferedStream.WriteToUnderlyingStreamAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken,System.Threading.Tasks.Task)">
+            <summary>BufferedStream should be as thin a wrapper as possible. We want WriteAsync to delegate to
+            WriteAsync of the underlying _stream rather than calling the base Stream which implements the one 
+            in terms of the other. This allows BufferedStream to affect the semantics of the stream it wraps as 
+            little as possible.
+            </summary>
+        </member>
+        <member name="T:System.IO.StreamHelpers">
+            <summary>Provides methods to help in the implementation of Stream-derived types.</summary>
+        </member>
+        <member name="M:System.IO.StreamHelpers.ValidateCopyToArgs(System.IO.Stream,System.IO.Stream,System.Int32)">
+            <summary>Validate the arguments to CopyTo, as would Stream.CopyTo.</summary>
+        </member>
+        <member name="T:System.IO.DriveInfoInternal">
+            <summary>Contains internal volume helpers that are shared between many projects.</summary>
+        </member>
+        <member name="M:System.IO.PersistedFiles.GetUserFeatureDirectory(System.String)">
+            <summary>
+            Get the location of where to persist information for a particular aspect of the framework,
+            such as "cryptography".
+            </summary>
+            <param name="featureName">The directory name for the feature</param>
+            <returns>A path within the user's home directory for persisting data for the feature</returns>
+        </member>
+        <member name="M:System.IO.PersistedFiles.GetUserFeatureDirectory(System.String,System.String)">
+            <summary>
+            Get the location of where to persist information for a particular aspect of a feature of
+            the framework, such as "x509stores" within "cryptography".
+            </summary>
+            <param name="featureName">The directory name for the feature</param>
+            <param name="subFeatureName">The directory name for the sub-feature</param>
+            <returns>A path within the user's home directory for persisting data for the sub-feature</returns>
+        </member>
+        <member name="M:System.IO.PersistedFiles.GetUserFeatureDirectory(System.String[])">
+            <summary>
+            Get the location of where to persist information for a particular aspect of the framework,
+            with a lot of hierarchy, such as ["cryptography", "x509stores", "my"]
+            </summary>
+            <param name="featurePathParts">A non-empty set of directories to use for the storage hierarchy</param>
+            <returns>A path within the user's home directory for persisting data for the feature</returns>
+        </member>
+        <member name="M:System.IO.PersistedFiles.GetHomeDirectory">
+            <summary>Gets the current user's home directory.</summary>
+            <returns>The path to the home directory, or null if it could not be determined.</returns>
+        </member>
+        <member name="M:System.IO.PersistedFiles.TryGetHomeDirectoryFromPasswd(System.Byte*,System.Int32,System.String@)">
+            <summary>Wrapper for getpwuid_r.</summary>
+            <param name="buf">The scratch buffer to pass into getpwuid_r.</param>
+            <param name="bufLen">The length of <paramref name="buf"/>.</param>
+            <param name="path">The resulting path; null if the user didn't have an entry.</param>
+            <returns>true if the call was successful (path may still be null); false is a larger buffer is needed.</returns>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.SwitchExpressionException">
+            <summary>
+            Indicates that a switch expression that was non-exhaustive failed to match its input
+            at runtime, e.g. in the C# 8 expression <code>3 switch { 4 => 5 }</code>.
+            The exception optionally contains an object representing the unmatched value.
+            </summary>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskToApm">
+            <summary>
+            Provides support for efficiently using Tasks to implement the APM (Begin/End) pattern.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.Begin(System.Threading.Tasks.Task,System.AsyncCallback,System.Object)">
+            <summary>
+            Marshals the Task as an IAsyncResult, using the supplied callback and state
+            to implement the APM pattern.
+            </summary>
+            <param name="task">The Task to be marshaled.</param>
+            <param name="callback">The callback to be invoked upon completion.</param>
+            <param name="state">The state to be stored in the IAsyncResult.</param>
+            <returns>An IAsyncResult to represent the task's asynchronous operation.</returns>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.End(System.IAsyncResult)">
+            <summary>Processes an IAsyncResult returned by Begin.</summary>
+            <param name="asyncResult">The IAsyncResult to unwrap.</param>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.End``1(System.IAsyncResult)">
+            <summary>Processes an IAsyncResult returned by Begin.</summary>
+            <param name="asyncResult">The IAsyncResult to unwrap.</param>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.InvokeCallbackWhenTaskCompletes(System.Threading.Tasks.Task,System.AsyncCallback,System.IAsyncResult)">
+            <summary>Invokes the callback asynchronously when the task has completed.</summary>
+            <param name="antecedent">The Task to await.</param>
+            <param name="callback">The callback to invoke when the Task completes.</param>
+            <param name="asyncResult">The Task used as the IAsyncResult.</param>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult">
+            <summary>
+            Provides a simple IAsyncResult that wraps a Task.  This, in effect, allows
+            for overriding what's seen for the CompletedSynchronously and AsyncState values.
+            </summary>
+        </member>
+        <member name="F:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult.Task">
+            <summary>The wrapped Task.</summary>
+        </member>
+        <member name="F:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult._state">
+            <summary>The new AsyncState value.</summary>
+        </member>
+        <member name="F:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult._completedSynchronously">
+            <summary>The new CompletedSynchronously value.</summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult.#ctor(System.Threading.Tasks.Task,System.Object,System.Boolean)">
+            <summary>Initializes the IAsyncResult with the Task to wrap and the overriding AsyncState and CompletedSynchronously values.</summary>
+            <param name="task">The Task to wrap.</param>
+            <param name="state">The new AsyncState value</param>
+            <param name="completedSynchronously">The new CompletedSynchronously value.</param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference">
+            <summary>
+            Get a pinnable reference to the builder.
+            Does not ensure there is a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/>
+            This overload is pattern matched in the C# 7.3+ compiler so you can omit
+            the explicit method call, and write eg "fixed (char* c = builder)"
+            </summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.GetPinnableReference(System.Boolean)">
+            <summary>
+            Get a pinnable reference to the builder.
+            </summary>
+            <param name="terminate">Ensures that the builder has a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/></param>
+        </member>
+        <member name="P:System.Text.ValueStringBuilder.RawChars">
+            <summary>Returns the underlying storage of the builder.</summary>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.AsSpan(System.Boolean)">
+            <summary>
+            Returns a span around the contents of the builder.
+            </summary>
+            <param name="terminate">Ensures that the builder has a null char after <see cref="P:System.Text.ValueStringBuilder.Length"/></param>
+        </member>
+        <member name="M:System.Text.ValueStringBuilder.Grow(System.Int32)">
+            <summary>
+            Resize the internal buffer either by doubling current buffer size or
+            by adding <paramref name="additionalCapacityBeyondPos"/> to
+            <see cref="F:System.Text.ValueStringBuilder._pos"/> whichever is greater.
+            </summary>
+            <param name="additionalCapacityBeyondPos">
+            Number of chars requested beyond current position.
+            </param>
+        </member>
+        <member name="P:System.SR.Argument_EmptyApplicationName">
+            <summary>ApplicationId cannot have an empty string for the name.</summary>
+        </member>
+        <member name="P:System.SR.Argument_FrameworkNameMissingVersion">
+            <summary>FrameworkName version component is missing.</summary>
+        </member>
+        <member name="P:System.SR.Argument_FrameworkNameInvalid">
+            <summary>FrameworkName is invalid.</summary>
+        </member>
+        <member name="P:System.SR.Argument_FrameworkNameInvalidVersion">
+            <summary>FrameworkName version component is invalid.</summary>
+        </member>
+        <member name="P:System.SR.Argument_FrameworkNameTooShort">
+            <summary>FrameworkName cannot have less than two components or more than three components.</summary>
+        </member>
+        <member name="P:System.SR.net_emptystringcall">
+            <summary>The parameter '{0}' cannot be an empty string.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_NeedNonNegNum">
+            <summary>Non-negative number required.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_FileLengthTooBig">
+            <summary>Specified file length was too large for the file system.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_MustBePositive">
+            <summary>'{0}' must be greater than zero.</summary>
+        </member>
+        <member name="P:System.SR.IO_PathTooLong">
+            <summary>The specified file name or path is too long, or a component of the specified path is too long.</summary>
+        </member>
+        <member name="P:System.SR.IO_FileNotFound">
+            <summary>Unable to find the specified file.</summary>
+        </member>
+        <member name="P:System.SR.UnauthorizedAccess_IODenied_NoPathName">
+            <summary>Access to the path is denied.</summary>
+        </member>
+        <member name="P:System.SR.UnauthorizedAccess_IODenied_Path">
+            <summary>Access to the path '{0}' is denied.</summary>
+        </member>
+        <member name="P:System.SR.IO_SharingViolation_NoFileName">
+            <summary>The process cannot access the file because it is being used by another process.</summary>
+        </member>
+        <member name="P:System.SR.IO_FileNotFound_FileName">
+            <summary>Could not find file '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.IO_PathNotFound_NoPathName">
+            <summary>Could not find a part of the path.</summary>
+        </member>
+        <member name="P:System.SR.IO_PathNotFound_Path">
+            <summary>Could not find a part of the path '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.IO_AlreadyExists_Name">
+            <summary>Cannot create '{0}' because a file or directory with the same name already exists.</summary>
+        </member>
+        <member name="P:System.SR.IO_SharingViolation_File">
+            <summary>The process cannot access the file '{0}' because it is being used by another process.</summary>
+        </member>
+        <member name="P:System.SR.IO_FileExists_Name">
+            <summary>The file '{0}' already exists.</summary>
+        </member>
+        <member name="P:System.SR.PersistedFiles_NoHomeDirectory">
+            <summary>The home directory of the current user could not be determined.</summary>
+        </member>
+        <member name="P:System.SR.Argument_BadResourceScopeTypeBits">
+            <summary>Unknown value for the ResourceScope: {0}  Too many resource type bits may be set.</summary>
+        </member>
+        <member name="P:System.SR.Argument_BadResourceScopeVisibilityBits">
+            <summary>Unknown value for the ResourceScope: {0}  Too many resource visibility bits may be set.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentNull_TypeRequiredByResourceScope">
+            <summary>The type parameter cannot be null when scoping the resource's visibility to Private or Assembly.</summary>
+        </member>
+        <member name="P:System.SR.Argument_ResourceScopeWrongDirection">
+            <summary>Resource type in the ResourceScope enum is going from a more restrictive resource type to a more general one.  From: "{0}"  To: "{1}"</summary>
+        </member>
+        <member name="P:System.SR.Arg_AppDomainUnloadedException">
+            <summary>Attempted to access an unloaded AppDomain.</summary>
+        </member>
+        <member name="P:System.SR.Arg_SwitchExpressionException">
+            <summary>Non-exhaustive switch expression failed to match its input.</summary>
+        </member>
+        <member name="P:System.SR.Arg_ContextMarshalException">
+            <summary>Attempted to marshal an object across a context boundary.</summary>
+        </member>
+        <member name="P:System.SR.Argument_InvalidOffLen">
+            <summary>Offset and length were out of bounds for the array or count is greater than the number of elements from index to the end of the source collection.</summary>
+        </member>
+        <member name="P:System.SR.GenericInvalidData">
+            <summary>Found invalid data while decoding.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentNull_Buffer">
+            <summary>Buffer cannot be null.</summary>
+        </member>
+        <member name="P:System.SR.NotSupported_CannotWriteToBufferedStreamIfReadBufferCannotBeFlushed">
+            <summary>Cannot write to a BufferedStream while the read buffer is not empty if the underlying stream is not seekable. Ensure that the stream underlying this BufferedStream can seek or avoid interleaving read and write operations on this BufferedStream.</summary>
+        </member>
+        <member name="P:System.SR.NotSupported_UnseekableStream">
+            <summary>Stream does not support seeking.</summary>
+        </member>
+        <member name="P:System.SR.NotSupported_UnreadableStream">
+            <summary>Stream does not support reading.</summary>
+        </member>
+        <member name="P:System.SR.NotSupported_UnwritableStream">
+            <summary>Stream does not support writing.</summary>
+        </member>
+        <member name="P:System.SR.ObjectDisposed_StreamClosed">
+            <summary>Cannot access a closed stream.</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_NeedPosNum">
+            <summary>Positive number required.</summary>
+        </member>
+        <member name="P:System.SR.ObjectDisposed_WriterClosed">
+            <summary>Cannot write to a closed TextWriter.</summary>
+        </member>
+        <member name="P:System.SR.ObjectDisposed_ReaderClosed">
+            <summary>Cannot read from a closed TextReader.</summary>
+        </member>
+        <member name="P:System.SR.SwitchExpressionException_UnmatchedValue">
+            <summary>Unmatched value was {0}.</summary>
+        </member>
+        <member name="P:System.SR.IO_PathTooLong_Path">
+            <summary>The path '{0}' is too long, or a component of the specified path is too long.</summary>
+        </member>
+        <member name="P:System.SR.Argument_StringZeroLength">
+            <summary>String cannot be of zero length.</summary>
+        </member>
+        <member name="T:Interop.BOOL">
+            <summary>
+            Blittable version of Windows BOOL type. It is convenient in situations where
+            manual marshalling is required, or to avoid overhead of regular bool marshalling.
+            </summary>
+            <remarks>
+            Some Windows APIs return arbitrary integer values although the return type is defined
+            as BOOL. It is best to never compare BOOL to TRUE. Always use bResult != BOOL.FALSE
+            or bResult == BOOL.FALSE .
+            </remarks>
+        </member>
+        <member name="T:Interop.Error">
+            <summary>Common Unix errno error codes.</summary>
+        </member>
+        <member name="M:Interop.CheckIo(System.Int64,System.String,System.Boolean,System.Func{Interop.ErrorInfo,Interop.ErrorInfo})">
+            <summary>
+            Validates the result of system call that returns greater than or equal to 0 on success
+            and less than 0 on failure, with errno set to the error code.
+            If the system call failed for any reason, an exception is thrown. Otherwise, the system call succeeded.
+            </summary>
+            <param name="result">The result of the system call.</param>
+            <param name="path">The path with which this error is associated.  This may be null.</param>
+            <param name="isDirectory">true if the <paramref name="path"/> is known to be a directory; otherwise, false.</param>
+            <param name="errorRewriter">Optional function to change an error code prior to processing it.</param>
+            <returns>
+            On success, returns the non-negative result long that was validated.
+            </returns>
+        </member>
+        <member name="M:Interop.CheckIo(System.Int32,System.String,System.Boolean,System.Func{Interop.ErrorInfo,Interop.ErrorInfo})">
+            <summary>
+            Validates the result of system call that returns greater than or equal to 0 on success
+            and less than 0 on failure, with errno set to the error code.
+            If the system call failed for any reason, an exception is thrown. Otherwise, the system call succeeded.
+            </summary>
+            <returns>
+            On success, returns the non-negative result int that was validated.
+            </returns>
+        </member>
+        <member name="M:Interop.CheckIo(System.IntPtr,System.String,System.Boolean,System.Func{Interop.ErrorInfo,Interop.ErrorInfo})">
+            <summary>
+            Validates the result of system call that returns greater than or equal to 0 on success
+            and less than 0 on failure, with errno set to the error code.
+            If the system call failed for any reason, an exception is thrown. Otherwise, the system call succeeded.
+            </summary>
+            <returns>
+            On success, returns the non-negative result IntPtr that was validated.
+            </returns>
+        </member>
+        <member name="M:Interop.CheckIo``1(``0,System.String,System.Boolean,System.Func{Interop.ErrorInfo,Interop.ErrorInfo})">
+            <summary>
+            Validates the result of system call that returns greater than or equal to 0 on success
+            and less than 0 on failure, with errno set to the error code.
+            If the system call failed for any reason, an exception is thrown. Otherwise, the system call succeeded.
+            </summary>
+            <returns>
+            On success, returns the valid SafeFileHandle that was validated.
+            </returns>
+        </member>
+        <member name="M:Interop.GetExceptionForIoErrno(Interop.ErrorInfo,System.String,System.Boolean)">
+            <summary>
+            Gets an Exception to represent the supplied error info.
+            </summary>
+            <param name="errorInfo">The error info</param>
+            <param name="path">The path with which this error is associated.  This may be null.</param>
+            <param name="isDirectory">true if the <paramref name="path"/> is known to be a directory; otherwise, false.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

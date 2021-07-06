@@ -1,0 +1,678 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Diagnostics.TraceSource</name>
+    </assembly>
+    <members>
+        <member name="T:System.Diagnostics.BooleanSwitch">
+            <devdoc>
+               <para>Provides a simple on/off switch that can be used to control debugging and tracing
+                  output.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.BooleanSwitch.#ctor(System.String,System.String)">
+            <devdoc>
+            <para>Initializes a new instance of the <see cref='T:System.Diagnostics.BooleanSwitch'/>
+            class.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.BooleanSwitch.Enabled">
+            <devdoc>
+               <para>Specifies whether the switch is enabled
+                  (<see langword='true'/>) or disabled (<see langword='false'/>).</para>
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.DefaultTraceListener">
+            <devdoc>
+               <para>Provides
+                  the default output methods and behavior for tracing.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.DefaultTraceListener.#ctor">
+            <devdoc>
+            <para>Initializes a new instance of the <see cref='T:System.Diagnostics.DefaultTraceListener'/> class with 
+               Default as its <see cref='P:System.Diagnostics.TraceListener.Name'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.DefaultTraceListener.Fail(System.String)">
+            <devdoc>
+               <para>
+                  Emits or displays a message
+                  and a stack trace for an assertion that
+                  always fails.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.DefaultTraceListener.Fail(System.String,System.String)">
+            <devdoc>
+               <para>
+                  Emits or displays messages and a stack trace for an assertion that
+                  always fails.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.DefaultTraceListener.Write(System.String)">
+            <devdoc>
+               <para>
+                  Writes the output using <see cref="M:System.Diagnostics.Debug.Write(System.String)"/>.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.DefaultTraceListener.WriteLine(System.String)">
+            <devdoc>
+               <para>
+                  Writes the output followed by a line terminator using <see cref="M:System.Diagnostics.Debug.Write(System.String)"/>.
+               </para>
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.Switch">
+            <devdoc>
+            <para>Provides an <see langword='abstract '/>base class to
+               create new debugging and tracing switches.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Switch.#ctor(System.String,System.String)">
+            <devdoc>
+            <para>Initializes a new instance of the <see cref='T:System.Diagnostics.Switch'/>
+            class.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Switch.DisplayName">
+            <devdoc>
+               <para>Gets a name used to identify the switch.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Switch.Description">
+            <devdoc>
+               <para>Gets a description of the switch.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Switch.SwitchSetting">
+            <devdoc>
+               <para>
+                Indicates the current setting for this switch.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Switch.OnSwitchSettingChanged">
+            <devdoc>
+                This method is invoked when a switch setting has been changed.  It will
+                be invoked the first time a switch reads its value from the registry
+                or environment, and then it will be invoked each time the switch's
+                value is changed.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.Trace">
+            <devdoc>
+               <para>Provides a set of properties and methods to trace the execution of your code.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Trace.Listeners">
+            <devdoc>
+               <para>Gets the collection of listeners that is monitoring the trace output.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Trace.AutoFlush">
+            <devdoc>
+               <para>
+                  Gets or sets whether <see cref='M:System.Diagnostics.Trace.Flush'/> should be called on the <see cref='P:System.Diagnostics.Trace.Listeners'/> after every write.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Trace.IndentLevel">
+            <devdoc>
+               <para>Gets or sets the indent level.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.Trace.IndentSize">
+            <devdoc>
+               <para>
+                  Gets or sets the number of spaces in an indent.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Flush">
+            <devdoc>
+               <para>Clears the output buffer, and causes buffered data to
+                  be written to the <see cref='P:System.Diagnostics.Trace.Listeners'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Close">
+            <devdoc>
+            <para>Clears the output buffer, and then closes the <see cref='P:System.Diagnostics.Trace.Listeners'/> so that they no
+               longer receive debugging output.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Assert(System.Boolean)">
+            <devdoc>
+               <para>Checks for a condition, and outputs the callstack if the
+                  condition
+                  is <see langword='false'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Assert(System.Boolean,System.String)">
+            <devdoc>
+               <para>Checks for a condition, and displays a message if the condition is
+               <see langword='false'/>. </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Assert(System.Boolean,System.String,System.String)">
+            <devdoc>
+               <para>Checks for a condition, and displays both messages if the condition
+                  is <see langword='false'/>. </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Fail(System.String)">
+            <devdoc>
+               <para>Emits or displays a message for an assertion that always fails.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Fail(System.String,System.String)">
+            <devdoc>
+               <para>Emits or displays both messages for an assertion that always fails.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Write(System.String)">
+            <devdoc>
+            <para>Writes a message to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/>
+            collection.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Write(System.Object)">
+            <devdoc>
+            <para>Writes the name of the <paramref name="value "/>
+            parameter to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Write(System.String,System.String)">
+            <devdoc>
+               <para>Writes a category name and message to the trace listeners
+                  in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Write(System.Object,System.String)">
+            <devdoc>
+               <para>Writes a category name and the name of the value parameter to the trace listeners
+                  in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLine(System.String)">
+            <devdoc>
+               <para>Writes a message followed by a line terminator to the
+                  trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection.
+                  The default line terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLine(System.Object)">
+            <devdoc>
+            <para>Writes the name of the <paramref name="value "/> parameter followed by a line terminator to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection. The default line
+               terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLine(System.String,System.String)">
+            <devdoc>
+               <para>Writes a category name and message followed by a line terminator to the trace
+                  listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/>
+                  collection. The default line terminator is a carriage return followed by a line
+                  feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLine(System.Object,System.String)">
+            <devdoc>
+            <para>Writes a <paramref name="category "/>name and the name of the <paramref name="value "/> parameter followed by a line
+               terminator to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection. The default line
+               terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.String)">
+            <devdoc>
+            <para>Writes a message to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection
+               if a condition is <see langword='true'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.Object)">
+            <devdoc>
+            <para>Writes the name of the <paramref name="value "/>
+            parameter to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection if a condition is
+            <see langword='true'/>. </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.String,System.String)">
+            <devdoc>
+            <para>Writes a category name and message to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/>
+            collection if a condition is <see langword='true'/>. </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.Object,System.String)">
+            <devdoc>
+            <para>Writes a category name and the name of the <paramref name="value"/> parameter to the trace
+               listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection
+               if a condition is <see langword='true'/>. </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.String)">
+            <devdoc>
+               <para>Writes a message followed by a line terminator to the trace listeners in the
+               <see cref='P:System.Diagnostics.Trace.Listeners'/> collection if a condition is
+               <see langword='true'/>. The default line terminator is a carriage return followed
+                  by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.Object)">
+            <devdoc>
+            <para>Writes the name of the <paramref name="value"/> parameter followed by a line terminator to the
+               trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection
+               if a condition is
+            <see langword='true'/>. The default line
+               terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.String,System.String)">
+            <devdoc>
+               <para>Writes a category name and message followed by a line terminator to the trace
+                  listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection if a condition is
+               <see langword='true'/>. The default line terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.Object,System.String)">
+            <devdoc>
+            <para>Writes a category name and the name of the <paramref name="value "/> parameter followed by a line
+               terminator to the trace listeners in the <see cref='P:System.Diagnostics.Trace.Listeners'/> collection
+               if a <paramref name="condition"/> is <see langword='true'/>. The
+               default line terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Indent">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.Trace.Unindent">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.TraceLevel">
+            <devdoc>
+               <para>Specifies what messages to output for debugging
+                  and tracing.</para>
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.TraceLevel.Off">
+            <devdoc>
+               <para>
+                  Output no tracing and debugging
+                  messages.
+               </para>
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.TraceLevel.Error">
+            <devdoc>
+               <para>
+                  Output error-handling messages.
+               </para>
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.TraceLevel.Warning">
+            <devdoc>
+               <para>
+                  Output warnings and error-handling
+                  messages.
+               </para>
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.TraceLevel.Info">
+            <devdoc>
+               <para>
+                  Output informational messages, warnings, and error-handling messages.
+               </para>
+            </devdoc>
+        </member>
+        <member name="F:System.Diagnostics.TraceLevel.Verbose">
+            <devdoc>
+               Output all debugging and tracing messages.
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.TraceListener">
+            <devdoc>
+            <para>Provides the <see langword='abstract '/>base class for the listeners who
+               monitor trace and debug output.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.#ctor">
+            <devdoc>
+            <para>Initializes a new instance of the <see cref='T:System.Diagnostics.TraceListener'/> class.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.#ctor(System.String)">
+            <devdoc>
+            <para>Initializes a new instance of the <see cref='T:System.Diagnostics.TraceListener'/> class using the specified name as the
+               listener.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListener.Name">
+            <devdoc>
+            <para> Gets or sets a name for this <see cref='T:System.Diagnostics.TraceListener'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Dispose">
+            <devdoc>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Dispose(System.Boolean)">
+            <devdoc>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Flush">
+            <devdoc>
+               <para>When overridden in a derived class, flushes the output buffer.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListener.IndentLevel">
+            <devdoc>
+               <para>Gets or sets the indent level.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListener.IndentSize">
+            <devdoc>
+               <para>Gets or sets the number of spaces in an indent.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListener.NeedIndent">
+            <devdoc>
+               <para>Gets or sets a value indicating whether an indent is needed.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Close">
+            <devdoc>
+               <para>When overridden in a derived class, closes the output stream
+                  so that it no longer receives tracing or debugging output.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Fail(System.String)">
+            <devdoc>
+               <para>Emits or displays a message for an assertion that always fails.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Fail(System.String,System.String)">
+            <devdoc>
+               <para>Emits or displays messages for an assertion that always fails.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Write(System.String)">
+            <devdoc>
+               <para>When overridden in a derived class, writes the specified
+                  message to the listener you specify in the derived class.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Write(System.Object)">
+            <devdoc>
+            <para>Writes the name of the <paramref name="o"/> parameter to the listener you specify when you inherit from the <see cref='T:System.Diagnostics.TraceListener'/>
+            class.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Write(System.String,System.String)">
+            <devdoc>
+               <para>Writes a category name and a message to the listener you specify when you
+                  inherit from the <see cref='T:System.Diagnostics.TraceListener'/>
+                  class.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)">
+            <devdoc>
+            <para>Writes a category name and the name of the <paramref name="o"/> parameter to the listener you
+               specify when you inherit from the <see cref='T:System.Diagnostics.TraceListener'/>
+               class.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.WriteIndent">
+            <devdoc>
+               <para>Writes the indent to the listener you specify when you
+                  inherit from the <see cref='T:System.Diagnostics.TraceListener'/>
+                  class, and resets the <see cref='P:System.Diagnostics.TraceListener.NeedIndent'/> property to <see langword='false'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.WriteLine(System.String)">
+            <devdoc>
+               <para>When overridden in a derived class, writes a message to the listener you specify in
+                  the derived class, followed by a line terminator. The default line terminator is a carriage return followed
+                  by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.WriteLine(System.Object)">
+            <devdoc>
+            <para>Writes the name of the <paramref name="o"/> parameter to the listener you specify when you inherit from the <see cref='T:System.Diagnostics.TraceListener'/> class, followed by a line terminator. The default line terminator is a
+               carriage return followed by a line feed
+               (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)">
+            <devdoc>
+               <para>Writes a category name and a message to the listener you specify when you
+                  inherit from the <see cref='T:System.Diagnostics.TraceListener'/> class,
+                  followed by a line terminator. The default line terminator is a carriage return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)">
+            <devdoc>
+               <para>Writes a category
+                  name and the name of the <paramref name="o"/>parameter to the listener you
+                  specify when you inherit from the <see cref='T:System.Diagnostics.TraceListener'/>
+                  class, followed by a line terminator. The default line terminator is a carriage
+                  return followed by a line feed (\r\n).</para>
+            </devdoc>
+        </member>
+        <member name="T:System.Diagnostics.TraceListenerCollection">
+            <devdoc>
+            <para>Provides a thread-safe list of <see cref='T:System.Diagnostics.TraceListenerCollection'/>. A thread-safe list is synchronized.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.Item(System.Int32)">
+            <devdoc>
+            <para>Gets or sets the <see cref='T:System.Diagnostics.TraceListener'/> at
+               the specified index.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.Item(System.String)">
+            <devdoc>
+            <para>Gets the first <see cref='T:System.Diagnostics.TraceListener'/> in the list with the specified name.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.Count">
+            <devdoc>
+               <para>
+                  Gets the number of listeners in the list.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.Add(System.Diagnostics.TraceListener)">
+            <devdoc>
+            <para>Adds a <see cref='T:System.Diagnostics.TraceListener'/> to the list.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.AddRange(System.Diagnostics.TraceListener[])">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.AddRange(System.Diagnostics.TraceListenerCollection)">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.Clear">
+            <devdoc>
+               <para>
+                  Clears all the listeners from the
+                  list.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.Contains(System.Diagnostics.TraceListener)">
+            <devdoc>
+               <para>Checks whether the list contains the specified 
+                  listener.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.CopyTo(System.Diagnostics.TraceListener[],System.Int32)">
+            <devdoc>
+            <para>Copies a section of the current <see cref='T:System.Diagnostics.TraceListenerCollection'/> list to the specified array at the specified 
+               index.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.GetEnumerator">
+            <devdoc>
+               <para>
+                  Gets an enumerator for this list.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.IndexOf(System.Diagnostics.TraceListener)">
+            <devdoc>
+               <para>Gets the index of the specified listener.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.Insert(System.Int32,System.Diagnostics.TraceListener)">
+            <devdoc>
+               <para>Inserts the listener at the specified index.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.Remove(System.Diagnostics.TraceListener)">
+            <devdoc>
+               <para>
+                  Removes the specified instance of the <see cref='T:System.Diagnostics.TraceListener'/> class from the list.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.Remove(System.String)">
+            <devdoc>
+               <para>Removes the first listener in the list that has the 
+                  specified name.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.RemoveAt(System.Int32)">
+            <devdoc>
+            <para>Removes the <see cref='T:System.Diagnostics.TraceListener'/> at the specified index.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Item(System.Int32)">
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#IList#IsReadOnly">
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#IList#IsFixedSize">
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Add(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Contains(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#IndexOf(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Insert(System.Int32,System.Object)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Remove(System.Object)">
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#ICollection#SyncRoot">
+            <internalonly/>
+        </member>
+        <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#ICollection#IsSynchronized">
+            <internalonly/>
+        </member>
+        <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <internalonly/>
+        </member>
+        <member name="T:System.Diagnostics.TraceSwitch">
+            <devdoc>
+               <para>Provides a multi-level switch to enable or disable tracing
+                  and debug output for a compiled application or framework.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceSwitch.#ctor(System.String,System.String)">
+            <devdoc>
+            <para>Initializes a new instance of the <see cref='T:System.Diagnostics.TraceSwitch'/> class.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceSwitch.Level">
+            <devdoc>
+               <para>Gets or sets the trace
+                  level that specifies what messages to output for tracing and debugging.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceSwitch.TraceError">
+            <devdoc>
+               <para>Gets a value
+                  indicating whether the <see cref='P:System.Diagnostics.TraceSwitch.Level'/> is set to
+               <see langword='Error'/>, <see langword='Warning'/>, <see langword='Info'/>, or
+               <see langword='Verbose'/>.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceSwitch.TraceWarning">
+            <devdoc>
+               <para>Gets a value
+                  indicating whether the <see cref='P:System.Diagnostics.TraceSwitch.Level'/> is set to
+               <see langword='Warning'/>, <see langword='Info'/>, or <see langword='Verbose'/>.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceSwitch.TraceInfo">
+            <devdoc>
+               <para>Gets a value
+                  indicating whether the <see cref='P:System.Diagnostics.TraceSwitch.Level'/> is set to
+               <see langword='Info'/> or <see langword='Verbose'/>.</para>
+            </devdoc>
+        </member>
+        <member name="P:System.Diagnostics.TraceSwitch.TraceVerbose">
+            <devdoc>
+               <para>Gets a value
+                  indicating whether the <see cref='P:System.Diagnostics.TraceSwitch.Level'/> is set to
+               <see langword='Verbose'/>.</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Diagnostics.TraceSwitch.OnSwitchSettingChanged">
+            <devdoc>
+               <para>
+                  Update the level for this switch.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.SR.ExceptionOccurred">
+            <summary>An exception occurred while writing to the log file {0}: {1}.</summary>
+        </member>
+        <member name="P:System.SR.MustAddListener">
+            <summary>Only TraceListeners can be added to a TraceListenerCollection.</summary>
+        </member>
+        <member name="P:System.SR.TraceListenerFail">
+            <summary>Fail:</summary>
+        </member>
+        <member name="P:System.SR.TraceListenerIndentSize">
+            <summary>The IndentSize property must be non-negative.</summary>
+        </member>
+        <member name="P:System.SR.DebugAssertBanner">
+            <summary>---- DEBUG ASSERTION FAILED ----</summary>
+        </member>
+        <member name="P:System.SR.DebugAssertShortMessage">
+            <summary>---- Assert Short Message ----</summary>
+        </member>
+        <member name="P:System.SR.DebugAssertLongMessage">
+            <summary>---- Assert Long Message ----</summary>
+        </member>
+        <member name="P:System.SR.TraceSwitchLevelTooLow">
+            <summary>Attempted to set {0} to a value that is too low.  Setting level to TraceLevel.Off</summary>
+        </member>
+        <member name="P:System.SR.TraceSwitchInvalidLevel">
+            <summary>The Level must be set to a value in the enumeration TraceLevel.</summary>
+        </member>
+        <member name="P:System.SR.TraceSwitchLevelTooHigh">
+            <summary>Attempted to set {0} to a value that is too high.  Setting level to TraceLevel.Verbose</summary>
+        </member>
+        <member name="P:System.SR.InvalidNullEmptyArgument">
+            <summary>Argument {0} cannot be null or zero-length.</summary>
+        </member>
+    </members>
+</doc>

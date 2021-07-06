@@ -1,0 +1,863 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Threading</name>
+    </assembly>
+    <members>
+        <member name="T:System.Threading.BarrierPostPhaseException">
+            <summary>
+            The exception that is thrown when the post-phase action of a <see cref="T:System.Threading.Barrier"/> fails.
+            </summary>
+        </member>
+        <member name="M:System.Threading.BarrierPostPhaseException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Threading.BarrierPostPhaseException"/> class.
+            </summary>
+        </member>
+        <member name="M:System.Threading.BarrierPostPhaseException.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Threading.BarrierPostPhaseException"/> class with the specified inner exception.
+            </summary>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:System.Threading.BarrierPostPhaseException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Threading.BarrierPostPhaseException"/> class with a specified error message.
+            </summary>
+            <param name="message">A string that describes the exception.</param>
+        </member>
+        <member name="M:System.Threading.BarrierPostPhaseException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Threading.BarrierPostPhaseException"/> class with a specified error message and inner exception.
+            </summary>
+            <param name="message">A string that describes the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception.</param>
+        </member>
+        <member name="M:System.Threading.BarrierPostPhaseException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the BarrierPostPhaseException class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="T:System.Threading.Barrier">
+            <summary>
+            Enables multiple tasks to cooperatively work on an algorithm in parallel through multiple phases.
+            </summary>
+            <remarks>
+            <para>
+            A group of tasks cooperate by moving through a series of phases, where each in the group signals it
+            has arrived at the <see cref="T:System.Threading.Barrier"/> in a given phase and implicitly waits for all others to
+            arrive. The same <see cref="T:System.Threading.Barrier"/> can be used for multiple phases.
+            </para>
+            <para>
+            All public and protected members of <see cref="T:System.Threading.Barrier"/> are thread-safe and may be used
+            concurrently from multiple threads, with the exception of Dispose, which
+            must only be used when all other operations on the <see cref="T:System.Threading.Barrier"/> have
+            completed.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:System.Threading.Barrier.ParticipantsRemaining">
+            <summary>
+            Gets the number of participants in the barrier that haven't yet signaled
+            in the current phase.
+            </summary>
+            <remarks>
+            This could be 0 during a post-phase action delegate execution or if the
+            ParticipantCount is 0.
+            </remarks>
+        </member>
+        <member name="P:System.Threading.Barrier.ParticipantCount">
+            <summary>
+            Gets the total number of participants in the barrier.
+            </summary>
+        </member>
+        <member name="P:System.Threading.Barrier.CurrentPhaseNumber">
+            <summary>
+            Gets the number of the barrier's current phase.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Barrier.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Threading.Barrier"/> class.
+            </summary>
+            <param name="participantCount">The number of participating threads.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"> <paramref name="participantCount"/> is less than 0
+            or greater than <see cref="T:System.Int16.MaxValue"/>.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.#ctor(System.Int32,System.Action{System.Threading.Barrier})">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Threading.Barrier"/> class.
+            </summary>
+            <param name="participantCount">The number of participating threads.</param>
+            <param name="postPhaseAction">The <see cref="T:System.Action`1"/> to be executed after each
+            phase.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"> <paramref name="participantCount"/> is less than 0
+            or greater than <see cref="T:System.Int32.MaxValue"/>.</exception>
+            <remarks>
+            The <paramref name="postPhaseAction"/> delegate will be executed after
+            all participants have arrived at the barrier in one phase.  The participants
+            will not be released to the next phase until the postPhaseAction delegate
+            has completed execution.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.Barrier.GetCurrentTotal(System.Int32,System.Int32@,System.Int32@,System.Boolean@)">
+            <summary>
+            Extract the three variables current, total and sense from a given big variable
+            </summary>
+            <param name="currentTotal">The integer variable that contains the other three variables</param>
+            <param name="current">The current participant count</param>
+            <param name="total">The total participants count</param>
+            <param name="sense">The sense flag</param>
+        </member>
+        <member name="M:System.Threading.Barrier.SetCurrentTotal(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Write the three variables current. total and the sense to the m_currentTotal
+            </summary>
+            <param name="currentTotal">The old current total to compare</param>
+            <param name="current">The current participant count</param>
+            <param name="total">The total participants count</param>
+            <param name="sense">The sense flag</param>
+            <returns>True if the CAS succeeded, false otherwise</returns>
+        </member>
+        <member name="M:System.Threading.Barrier.AddParticipant">
+            <summary>
+            Notifies the <see cref="T:System.Threading.Barrier"/> that there will be an additional participant.
+            </summary>
+            <returns>The phase number of the barrier in which the new participants will first
+            participate.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Adding a participant would cause the barrier's participant count to 
+            exceed <see cref="T:System.Int16.MaxValue"/>.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.AddParticipants(System.Int32)">
+            <summary>
+            Notifies the <see cref="T:System.Threading.Barrier"/> that there will be additional participants.
+            </summary>
+            <param name="participantCount">The number of additional participants to add to the
+            barrier.</param>
+            <returns>The phase number of the barrier in which the new participants will first
+            participate.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="participantCount"/> is less than
+            0.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Adding <paramref name="participantCount"/> participants would cause the
+            barrier's participant count to exceed <see cref="T:System.Int16.MaxValue"/>.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.RemoveParticipant">
+            <summary>
+            Notifies the <see cref="T:System.Threading.Barrier"/> that there will be one less participant.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The barrier already has 0
+            participants.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.RemoveParticipants(System.Int32)">
+            <summary>
+            Notifies the <see cref="T:System.Threading.Barrier"/> that there will be fewer participants.
+            </summary>
+            <param name="participantCount">The number of additional participants to remove from the barrier.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="participantCount"/> is less than
+            0.</exception>
+            <exception cref="T:System.InvalidOperationException">The barrier already has 0 participants.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.SignalAndWait">
+            <summary>
+            Signals that a participant has reached the <see cref="T:System.Threading.Barrier"/> and waits for all other
+            participants to reach the barrier as well.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action, the barrier currently has 0 participants,
+            or the barrier is being used by more threads than are registered as participants.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.SignalAndWait(System.Threading.CancellationToken)">
+            <summary>
+            Signals that a participant has reached the <see cref="T:System.Threading.Barrier"/> and waits for all other
+            participants to reach the barrier, while observing a <see
+            cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to
+            observe.</param>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action, the barrier currently has 0 participants,
+            or the barrier is being used by more threads than are registered as participants.
+            </exception>
+            <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken"/> has been
+            canceled.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.SignalAndWait(System.TimeSpan)">
+            <summary>
+            Signals that a participant has reached the <see cref="T:System.Threading.Barrier"/> and waits for all other
+            participants to reach the barrier as well, using a
+            <see cref="T:System.TimeSpan"/> to measure the time interval.
+            </summary>
+            <param name="timeout">A <see cref="T:System.TimeSpan"/> that represents the number of
+            milliseconds to wait, or a <see cref="T:System.TimeSpan"/> that represents -1 milliseconds to
+            wait indefinitely.</param>
+            <returns>true if all other participants reached the barrier; otherwise, false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout"/>is a negative number
+            other than -1 milliseconds, which represents an infinite time-out, or it is greater than
+            <see cref="T:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action, the barrier currently has 0 participants,
+            or the barrier is being used by more threads than are registered as participants.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.SignalAndWait(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Signals that a participant has reached the <see cref="T:System.Threading.Barrier"/> and waits for all other
+            participants to reach the barrier as well, using a
+            <see cref="T:System.TimeSpan"/> to measure the time interval, while observing a <see
+            cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+            <param name="timeout">A <see cref="T:System.TimeSpan"/> that represents the number of
+            milliseconds to wait, or a <see cref="T:System.TimeSpan"/> that represents -1 milliseconds to
+            wait indefinitely.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to
+            observe.</param>
+            <returns>true if all other participants reached the barrier; otherwise, false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout"/>is a negative number
+            other than -1 milliseconds, which represents an infinite time-out.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action, the barrier currently has 0 participants,
+            or the barrier is being used by more threads than are registered as participants.
+            </exception>
+            <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken"/> has been
+            canceled.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.SignalAndWait(System.Int32)">
+            <summary>
+            Signals that a participant has reached the <see cref="T:System.Threading.Barrier"/> and waits for all other
+            participants to reach the barrier as well, using a
+            32-bit signed integer to measure the time interval.
+            </summary>
+            <param name="millisecondsTimeout">The number of milliseconds to wait, or <see
+            cref="F:System.Threading.Timeout.Infinite"/>(-1) to wait indefinitely.</param>
+            <returns>true if all other participants reached the barrier; otherwise, false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
+            negative number other than -1, which represents an infinite time-out.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action, the barrier currently has 0 participants,
+            or the barrier is being used by more threads than are registered as participants.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.SignalAndWait(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Signals that a participant has reached the barrier and waits for all other participants to reach
+            the barrier as well, using a
+            32-bit signed integer to measure the time interval, while observing a <see
+            cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+            <param name="millisecondsTimeout">The number of milliseconds to wait, or <see
+            cref="F:System.Threading.Timeout.Infinite"/>(-1) to wait indefinitely.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to
+            observe.</param>
+            <returns>true if all other participants reached the barrier; otherwise, false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
+            negative number other than -1, which represents an infinite time-out.</exception>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action, the barrier currently has 0 participants,
+            or the barrier is being used by more threads than are registered as participants.
+            </exception>
+            <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken"/> has been
+            canceled.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.Barrier.FinishPhase(System.Boolean)">
+            <summary>
+            Finish the phase by invoking the post phase action, and setting the event, this must be called by the 
+            last arrival thread
+            </summary>
+            <param name="observedSense">The current phase sense</param>
+        </member>
+        <member name="M:System.Threading.Barrier.InvokePostPhaseAction(System.Object)">
+            <summary>
+            Helper method to call the post phase action
+            </summary>
+            <param name="obj"></param>
+        </member>
+        <member name="M:System.Threading.Barrier.SetResetEvents(System.Boolean)">
+            <summary>
+            Sets the current phase event and reset the next phase event
+            </summary>
+            <param name="observedSense">The current phase sense</param>
+        </member>
+        <member name="M:System.Threading.Barrier.WaitCurrentPhase(System.Threading.ManualResetEventSlim,System.Int64)">
+            <summary>
+            Wait until the current phase finishes completely by spinning until either the event is set,
+            or the phase count is incremented more than one time
+            </summary>
+            <param name="currentPhaseEvent">The current phase event</param>
+            <param name="observedPhase">The current phase for that thread</param>
+        </member>
+        <member name="M:System.Threading.Barrier.DiscontinuousWait(System.Threading.ManualResetEventSlim,System.Int32,System.Threading.CancellationToken,System.Int64)">
+            <summary>
+            The reason of discontinuous waiting instead of direct waiting on the event is to avoid the race where the sense is 
+            changed twice because the next phase is finished (due to either RemoveParticipant is called or another thread joined
+            the next phase instead of the current thread) so the current thread will be stuck on the event because it is reset back
+            The maxWait and the shift numbers are arbitrarily chosen, there were no references picking them
+            </summary>
+            <param name="currentPhaseEvent">The current phase event</param>
+            <param name="totalTimeout">wait timeout in milliseconds</param>
+            <param name="token">cancellation token passed to SignalAndWait</param>
+            <param name="observedPhase">The current phase number for this thread</param>
+            <returns>True if the event is set or the phase number changed, false if the timeout expired</returns>
+        </member>
+        <member name="M:System.Threading.Barrier.Dispose">
+            <summary>
+            Releases all resources used by the current instance of <see cref="T:System.Threading.Barrier"/>.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            The method was invoked from within a post-phase action.
+            </exception>
+            <remarks>
+            Unlike most of the members of <see cref="T:System.Threading.Barrier"/>, Dispose is not thread-safe and may not be
+            used concurrently with other members of this instance.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.Barrier.Dispose(System.Boolean)">
+            <summary>
+            When overridden in a derived class, releases the unmanaged resources used by the
+            <see cref="T:System.Threading.Barrier"/>, and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release
+            only unmanaged resources.</param>
+            <remarks>
+            Unlike most of the members of <see cref="T:System.Threading.Barrier"/>, Dispose is not thread-safe and may not be
+            used concurrently with other members of this instance.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.Barrier.ThrowIfDisposed">
+            <summary>
+            Throw ObjectDisposedException if the barrier is disposed
+            </summary>
+        </member>
+        <member name="T:System.Threading.CdsSyncEtwBCLProvider">
+            <summary>Provides an event source for tracing CDS synchronization information.</summary>
+        </member>
+        <member name="F:System.Threading.CdsSyncEtwBCLProvider.Log">
+            <summary>
+            Defines the singleton instance for the CDS Sync ETW provider.
+            The CDS Sync Event provider GUID is {EC631D38-466B-4290-9306-834971BA0217}.
+            </summary>
+        </member>
+        <member name="M:System.Threading.CdsSyncEtwBCLProvider.#ctor">
+            <summary>Prevent external instantiation.  All logging should go through the Log instance.</summary>
+        </member>
+        <member name="F:System.Threading.CdsSyncEtwBCLProvider.ALL_KEYWORDS">
+            <summary>Enabled for all keywords.</summary>
+        </member>
+        <member name="T:System.Threading.CountdownEvent">
+            <summary>
+            Represents a synchronization primitive that is signaled when its count reaches zero.
+            </summary>
+            <remarks>
+            All public and protected members of <see cref="T:System.Threading.CountdownEvent"/> are thread-safe and may be used
+            concurrently from multiple threads, with the exception of Dispose, which
+            must only be used when all other operations on the <see cref="T:System.Threading.CountdownEvent"/> have
+            completed, and Reset, which should only be used when no other threads are
+            accessing the event.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of <see cref="T:System.Threading.CountdownEvent"/> class with the
+            specified count.
+            </summary>
+            <param name="initialCount">The number of signals required to set the <see
+            cref="T:System.Threading.CountdownEvent"/>.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="initialCount"/> is less
+            than 0.</exception>
+        </member>
+        <member name="P:System.Threading.CountdownEvent.CurrentCount">
+            <summary>
+            Gets the number of remaining signals required to set the event.
+            </summary>
+            <value>
+            The number of remaining signals required to set the event.
+            </value>
+        </member>
+        <member name="P:System.Threading.CountdownEvent.InitialCount">
+            <summary>
+            Gets the numbers of signals initially required to set the event.
+            </summary>
+            <value>
+            The number of signals initially required to set the event.
+            </value>
+        </member>
+        <member name="P:System.Threading.CountdownEvent.IsSet">
+            <summary>
+            Determines whether the event is set.
+            </summary>
+            <value>true if the event is set; otherwise, false.</value>
+        </member>
+        <member name="P:System.Threading.CountdownEvent.WaitHandle">
+            <summary>
+            Gets a <see cref="T:System.Threading.WaitHandle"/> that is used to wait for the event to be set. 
+            </summary>
+            <value>A <see cref="T:System.Threading.WaitHandle"/> that is used to wait for the event to be set.</value>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been disposed.</exception>
+            <remarks>
+            <see cref="P:System.Threading.CountdownEvent.WaitHandle"/> should only be used if it's needed for integration with code bases
+            that rely on having a WaitHandle.  If all that's needed is to wait for the <see cref="T:System.Threading.CountdownEvent"/>
+            to be set, the <see cref="M:System.Threading.CountdownEvent.Wait"/> method should be preferred.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Dispose">
+            <summary>
+            Releases all resources used by the current instance of <see cref="T:System.Threading.CountdownEvent"/>.
+            </summary>
+            <remarks>
+            Unlike most of the members of <see cref="T:System.Threading.CountdownEvent"/>, <see cref="M:System.Threading.CountdownEvent.Dispose"/> is not
+            thread-safe and may not be used concurrently with other members of this instance.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Dispose(System.Boolean)">
+            <summary>
+            When overridden in a derived class, releases the unmanaged resources used by the
+            <see cref="T:System.Threading.CountdownEvent"/>, and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release
+            only unmanaged resources.</param>
+            <remarks>
+            Unlike most of the members of <see cref="T:System.Threading.CountdownEvent"/>, <see cref="M:System.Threading.CountdownEvent.Dispose"/> is not
+            thread-safe and may not be used concurrently with other members of this instance.
+            </remarks>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Signal">
+            <summary>
+            Registers a signal with the <see cref="T:System.Threading.CountdownEvent"/>, decrementing its
+            count.
+            </summary>
+            <returns>true if the signal caused the count to reach zero and the event was set; otherwise,
+            false.</returns>
+            <exception cref="T:System.InvalidOperationException">The current instance is already set.
+            </exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Signal(System.Int32)">
+            <summary>
+            Registers multiple signals with the <see cref="T:System.Threading.CountdownEvent"/>,
+            decrementing its count by the specified amount.
+            </summary>
+            <param name="signalCount">The number of signals to register.</param>
+            <returns>true if the signals caused the count to reach zero and the event was set; otherwise,
+            false.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            The current instance is already set. -or- Or <paramref name="signalCount"/> is greater than <see
+            cref="P:System.Threading.CountdownEvent.CurrentCount"/>.
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="signalCount"/> is less
+            than 1.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.AddCount">
+            <summary>
+            Increments the <see cref="T:System.Threading.CountdownEvent"/>'s current count by one.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">The current instance is already
+            set.</exception>
+            <exception cref="T:System.InvalidOperationException"><see cref="P:System.Threading.CountdownEvent.CurrentCount"/> is equal to <see
+            cref="T:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">
+            The current instance has already been disposed.
+            </exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.TryAddCount">
+            <summary>
+            Attempts to increment the <see cref="T:System.Threading.CountdownEvent"/>'s current count by one.
+            </summary>
+            <returns>true if the increment succeeded; otherwise, false. If <see cref="P:System.Threading.CountdownEvent.CurrentCount"/> is
+            already at zero. this will return false.</returns>
+            <exception cref="T:System.InvalidOperationException"><see cref="P:System.Threading.CountdownEvent.CurrentCount"/> is equal to <see
+            cref="T:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.AddCount(System.Int32)">
+            <summary>
+            Increments the <see cref="T:System.Threading.CountdownEvent"/>'s current count by a specified
+            value.
+            </summary>
+            <param name="signalCount">The value by which to increase <see cref="P:System.Threading.CountdownEvent.CurrentCount"/>.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="signalCount"/> is less than
+            0.</exception>
+            <exception cref="T:System.InvalidOperationException">The current instance is already
+            set.</exception>
+            <exception cref="T:System.InvalidOperationException"><see cref="P:System.Threading.CountdownEvent.CurrentCount"/> is equal to <see
+            cref="T:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.TryAddCount(System.Int32)">
+            <summary>
+            Attempts to increment the <see cref="T:System.Threading.CountdownEvent"/>'s current count by a
+            specified value.
+            </summary>
+            <param name="signalCount">The value by which to increase <see cref="P:System.Threading.CountdownEvent.CurrentCount"/>.</param>
+            <returns>true if the increment succeeded; otherwise, false. If <see cref="P:System.Threading.CountdownEvent.CurrentCount"/> is
+            already at zero this will return false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="signalCount"/> is less
+            than 0.</exception>
+            <exception cref="T:System.InvalidOperationException">The current instance is already
+            set.</exception>
+            <exception cref="T:System.InvalidOperationException"><see cref="P:System.Threading.CountdownEvent.CurrentCount"/> is equal to <see
+            cref="T:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Reset">
+            <summary>
+            Resets the <see cref="P:System.Threading.CountdownEvent.CurrentCount"/> to the value of <see cref="P:System.Threading.CountdownEvent.InitialCount"/>.
+            </summary>
+            <remarks>
+            Unlike most of the members of <see cref="T:System.Threading.CountdownEvent"/>, Reset is not
+            thread-safe and may not be used concurrently with other members of this instance.
+            </remarks>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Reset(System.Int32)">
+            <summary>
+            Resets the <see cref="P:System.Threading.CountdownEvent.CurrentCount"/> to a specified value.
+            </summary>
+            <param name="count">The number of signals required to set the <see
+            cref="T:System.Threading.CountdownEvent"/>.</param>
+            <remarks>
+            Unlike most of the members of <see cref="T:System.Threading.CountdownEvent"/>, Reset is not
+            thread-safe and may not be used concurrently with other members of this instance.
+            </remarks>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="count"/> is
+            less than 0.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Wait">
+            <summary>
+            Blocks the current thread until the <see cref="T:System.Threading.CountdownEvent"/> is set.
+            </summary>
+            <remarks>
+            The caller of this method blocks indefinitely until the current instance is set. The caller will
+            return immediately if the event is currently in a set state.
+            </remarks>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Wait(System.Threading.CancellationToken)">
+            <summary>
+            Blocks the current thread until the <see cref="T:System.Threading.CountdownEvent"/> is set, while
+            observing a <see cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to
+            observe.</param>
+            <remarks>
+            The caller of this method blocks indefinitely until the current instance is set. The caller will
+            return immediately if the event is currently in a set state.  If the 
+            <see cref="T:System.Threading.CancellationToken">CancellationToken</see> being observed
+            is canceled during the wait operation, an <see cref="T:System.OperationCanceledException"/>
+            will be thrown.
+            </remarks>
+            <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken"/> has been
+            canceled.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Wait(System.TimeSpan)">
+            <summary>
+            Blocks the current thread until the <see cref="T:System.Threading.CountdownEvent"/> is set, using a
+            <see cref="T:System.TimeSpan"/> to measure the time interval.
+            </summary>
+            <param name="timeout">A <see cref="T:System.TimeSpan"/> that represents the number of
+            milliseconds to wait, or a <see cref="T:System.TimeSpan"/> that represents -1 milliseconds to
+            wait indefinitely.</param>
+            <returns>true if the <see cref="T:System.Threading.CountdownEvent"/> was set; otherwise,
+            false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout"/> is a negative
+            number other than -1 milliseconds, which represents an infinite time-out -or- timeout is greater
+            than <see cref="F:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Wait(System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            Blocks the current thread until the <see cref="T:System.Threading.CountdownEvent"/> is set, using
+            a <see cref="T:System.TimeSpan"/> to measure the time interval, while observing a
+            <see cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+            <param name="timeout">A <see cref="T:System.TimeSpan"/> that represents the number of
+            milliseconds to wait, or a <see cref="T:System.TimeSpan"/> that represents -1 milliseconds to
+            wait indefinitely.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to
+            observe.</param>
+            <returns>true if the <see cref="T:System.Threading.CountdownEvent"/> was set; otherwise,
+            false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="timeout"/> is a negative
+            number other than -1 milliseconds, which represents an infinite time-out -or- timeout is greater
+            than <see cref="F:System.Int32.MaxValue"/>.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+            <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken"/> has
+            been canceled.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Wait(System.Int32)">
+            <summary>
+            Blocks the current thread until the <see cref="T:System.Threading.CountdownEvent"/> is set, using a
+            32-bit signed integer to measure the time interval.
+            </summary>
+            <param name="millisecondsTimeout">The number of milliseconds to wait, or <see
+            cref="F:System.Threading.Timeout.Infinite"/>(-1) to wait indefinitely.</param>
+            <returns>true if the <see cref="T:System.Threading.CountdownEvent"/> was set; otherwise,
+            false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
+            negative number other than -1, which represents an infinite time-out.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.Wait(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Blocks the current thread until the <see cref="T:System.Threading.CountdownEvent"/> is set, using a
+            32-bit signed integer to measure the time interval, while observing a
+            <see cref="T:System.Threading.CancellationToken"/>.
+            </summary>
+            <param name="millisecondsTimeout">The number of milliseconds to wait, or <see
+            cref="F:System.Threading.Timeout.Infinite"/>(-1) to wait indefinitely.</param>
+            <param name="cancellationToken">The <see cref="T:System.Threading.CancellationToken"/> to
+            observe.</param>
+            <returns>true if the <see cref="T:System.Threading.CountdownEvent"/> was set; otherwise,
+            false.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="millisecondsTimeout"/> is a
+            negative number other than -1, which represents an infinite time-out.</exception>
+            <exception cref="T:System.ObjectDisposedException">The current instance has already been
+            disposed.</exception>
+            <exception cref="T:System.OperationCanceledException"><paramref name="cancellationToken"/> has
+            been canceled.</exception>
+        </member>
+        <member name="M:System.Threading.CountdownEvent.ThrowIfDisposed">
+            <summary>
+            Throws an exception if the latch has been disposed.
+            </summary>
+        </member>
+        <member name="F:System.Threading.HostExecutionContextManager.t_currentContext">
+            <summary>
+            Normally, the current <see cref="T:System.Threading.HostExecutionContext"/> would be stored on the <see cref="T:System.Threading.ExecutionContext"/>.
+            Since this feature is not fully hooked up, this class just imitates the behavior of the desktop framework, while
+            separating itself from the <see cref="T:System.Threading.ExecutionContext"/> to minimize unnecessary additions there.
+            </summary>
+        </member>
+        <member name="T:System.Threading.LockCookie">
+            <summary>
+            Stores the lock state of a <see cref="T:System.Threading.ReaderWriterLock"/> before its lock state is changed, such that the lock state may
+            later be restored.
+            </summary>
+        </member>
+        <member name="T:System.Threading.ReaderWriterLock">
+            <summary>
+            Reader writer lock implementation that supports the following features:
+            1. Cheap enough to be used in large numbers, such as per-object synchronization.
+            2. Supports timeout. This is a valuable feature to detect deadlocks.
+            3. Supports deleting (should support caching) events. Caching would allow events to be moved from least contentious
+               regions to the most contentious regions.
+            4. Supports nested locks by readers and writers
+            5. Supports spin counts for avoiding context switches on multi processor machines.
+            6. Supports functionality for upgrading to a writer lock, and the <see cref="P:System.Threading.ReaderWriterLock.WriterSeqNum"/> property that indicates
+               whether there were any intermediate writes. Downgrading from a writer lock restores the state of the lock.
+            7. Supports functionality to release all locks owned by a thread (see <see cref="M:System.Threading.ReaderWriterLock.ReleaseLock"/>).
+               <see cref="M:System.Threading.ReaderWriterLock.RestoreLock(System.Threading.LockCookie@)"/> restores the lock state.
+            8. Recovers from most common failures such as creation of events. In other words, the lock maintains consistent
+               internal state and remains usable
+            </summary>
+        </member>
+        <member name="F:System.Threading.ReaderWriterLock.IncorrectButCompatibleNotOwnerExceptionHResult">
+            <summary>
+            This is not an HResult, see <see cref="M:System.Threading.ReaderWriterLock.GetNotOwnerException"/>
+            </summary>
+        </member>
+        <member name="M:System.Threading.ReaderWriterLock.RecoverLock(System.Threading.LockCookie@,System.Threading.LockCookieFlags)">
+            <summary>
+            Helper function that restores the lock to the original state indicated by parameters
+            </summary>
+        </member>
+        <member name="M:System.Threading.ReaderWriterLock.GetOrCreateReaderEvent">
+            <exception cref="T:System.OutOfMemoryException">Failed to allocate the event object</exception>
+        </member>
+        <member name="M:System.Threading.ReaderWriterLock.GetOrCreateWriterEvent">
+            <exception cref="T:System.OutOfMemoryException">Failed to allocate the event object</exception>
+            <exception cref="T:System.SystemException">Failed to create the system event due to some system error</exception>
+        </member>
+        <member name="T:System.Threading.ReaderWriterLock.ReaderWriterLockApplicationException">
+            <summary>
+            The original code used to throw <see cref="T:System.ApplicationException"/> for almost all exception cases, even for
+            out-of-memory scenarios. <see cref="P:System.Exception.HResult"/> property was set to a specific value to indicate the actual
+            error that occurred, and this was not documented.
+            
+            In this C# rewrite, out-of-memory and low-resource cases throw <see cref="T:System.OutOfMemoryException"/> or whatever the
+            original type of exception was (for example, <see cref="T:System.IO.IOException"/> may be thrown if the system is unable to
+            create an <see cref="T:System.Threading.AutoResetEvent"/>). For all other exceptions, a
+            <see cref="T:System.Threading.ReaderWriterLock.ReaderWriterLockApplicationException"/> is thrown with the same <see cref="P:System.Exception.HResult"/> as
+            before.
+            </summary>
+        </member>
+        <member name="M:System.Threading.ReaderWriterLock.GetNotOwnerException">
+            <summary>
+            The original code used an incorrect <see cref="P:System.Exception.HResult"/> for this exception. The
+            <see cref="P:System.Exception.HResult"/> value was set to ERROR_NOT_OWNER without first converting that error code into an
+            HRESULT. The same value is used here for compatibility.
+            </summary>
+        </member>
+        <member name="T:System.Threading.ReaderWriterLock.ThreadLocalLockEntry">
+            <summary>
+            Stores thread-local lock info and manages the association of this info with each <see cref="T:System.Threading.ReaderWriterLock"/>
+            owned by a thread.
+            
+            The original code maintained lists of thread-local lock entries on the CLR's thread objects, and manually released
+            lock entries, which involved walking through all threads. While this is possible with ThreadLocal{T}, this
+            implementation prefers to use a similar design to that from ReaderWriterLockSlim, and allow reusing free entries
+            without removing entries, since it is unlikely that the list length for any thread would get unreasonably long.
+            </summary>
+        </member>
+        <member name="P:System.SR.CountdownEvent_Increment_AlreadyZero">
+            <summary>The event is already signaled and cannot be incremented.</summary>
+        </member>
+        <member name="P:System.SR.CountdownEvent_Increment_AlreadyMax">
+            <summary>The increment operation would cause the CurrentCount to overflow.</summary>
+        </member>
+        <member name="P:System.SR.CountdownEvent_Decrement_BelowZero">
+            <summary>Invalid attempt made to decrement the event's count below zero.</summary>
+        </member>
+        <member name="P:System.SR.Common_OperationCanceled">
+            <summary>The operation was canceled.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_Dispose">
+            <summary>The barrier has been disposed.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_SignalAndWait_InvalidOperation_ZeroTotal">
+            <summary>The barrier has no registered participants.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_SignalAndWait_ArgumentOutOfRange">
+            <summary>The specified timeout must represent a value between -1 and Int32.MaxValue, inclusive.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_RemoveParticipants_InvalidOperation">
+            <summary>The participantCount argument is greater than the number of participants that haven't yet arrived at the barrier in this phase.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_RemoveParticipants_ArgumentOutOfRange">
+            <summary>The participantCount argument must be less than or equal the number of participants.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_RemoveParticipants_NonPositive_ArgumentOutOfRange">
+            <summary>The participantCount argument must be a positive value.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_InvalidOperation_CalledFromPHA">
+            <summary>This method may not be called from within the postPhaseAction.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_AddParticipants_NonPositive_ArgumentOutOfRange">
+            <summary>The participantCount argument must be a positive value.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_SignalAndWait_InvalidOperation_ThreadsExceeded">
+            <summary>The number of threads using the barrier exceeded the total number of registered participants.</summary>
+        </member>
+        <member name="P:System.SR.BarrierPostPhaseException">
+            <summary>The postPhaseAction failed with an exception.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_ctor_ArgumentOutOfRange">
+            <summary>The participantCount argument must be non-negative and less than or equal to 32767.</summary>
+        </member>
+        <member name="P:System.SR.Barrier_AddParticipants_Overflow_ArgumentOutOfRange">
+            <summary>Adding participantCount participants would result in the number of participants exceeding the maximum number allowed.</summary>
+        </member>
+        <member name="P:System.SR.SynchronizationLockException_IncorrectDispose">
+            <summary>The lock is being disposed while still being used. It either is being held by a thread and/or has active waiters waiting to acquire the lock.</summary>
+        </member>
+        <member name="P:System.SR.SynchronizationLockException_MisMatchedWrite">
+            <summary>The write lock is being released without being held.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_UpgradeAfterReadNotAllowed">
+            <summary>Upgradeable lock may not be acquired with read lock held.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_UpgradeAfterWriteNotAllowed">
+            <summary>Upgradeable lock may not be acquired with write lock held in this mode. Acquiring Upgradeable lock gives the ability to read along with an option to upgrade to a writer.</summary>
+        </member>
+        <member name="P:System.SR.SynchronizationLockException_MisMatchedUpgrade">
+            <summary>The upgradeable lock is being released without being held.</summary>
+        </member>
+        <member name="P:System.SR.SynchronizationLockException_MisMatchedRead">
+            <summary>The read lock is being released without being held.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_WriteAfterReadNotAllowed">
+            <summary>Write lock may not be acquired with read lock held. This pattern is prone to deadlocks. Please ensure that read locks are released before taking a write lock. If an upgrade is necessary, use an upgrade lock in place of the read lock.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_RecursiveWriteNotAllowed">
+            <summary>Recursive write lock acquisitions not allowed in this mode.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_ReadAfterWriteNotAllowed">
+            <summary>A read lock may not be acquired with the write lock held in this mode.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_RecursiveUpgradeNotAllowed">
+            <summary>Recursive upgradeable lock acquisitions not allowed in this mode.</summary>
+        </member>
+        <member name="P:System.SR.LockRecursionException_RecursiveReadNotAllowed">
+            <summary>Recursive read lock acquisitions not allowed in this mode.</summary>
+        </member>
+        <member name="P:System.SR.Overflow_UInt16">
+            <summary>Value was either too large or too small for a UInt16.</summary>
+        </member>
+        <member name="P:System.SR.ReaderWriterLock_Timeout">
+            <summary>The operation has timed out. {0}</summary>
+        </member>
+        <member name="P:System.SR.ArgumentOutOfRange_TimeoutMilliseconds">
+            <summary>Timeout value in milliseconds must be nonnegative and less than or equal to Int32.MaxValue, or -1 for an infinite timeout.</summary>
+        </member>
+        <member name="P:System.SR.ReaderWriterLock_NotOwner">
+            <summary>Attempt to release a lock that is not owned by the calling thread. {0}</summary>
+        </member>
+        <member name="P:System.SR.ExceptionFromHResult">
+            <summary>(Exception from HRESULT: 0x{0:X})</summary>
+        </member>
+        <member name="P:System.SR.ReaderWriterLock_InvalidLockCookie">
+            <summary>The specified lock cookie is invalid for this operation. {0}</summary>
+        </member>
+        <member name="P:System.SR.ReaderWriterLock_RestoreLockWithOwnedLocks">
+            <summary>ReaderWriterLock.RestoreLock was called without releasing all locks acquired since the call to ReleaseLock.</summary>
+        </member>
+        <member name="P:System.SR.HostExecutionContextManager_InvalidOperation_NotNewCaptureContext">
+            <summary>Cannot apply a context that has been marshaled across AppDomains, that was not acquired through a Capture operation or that has already been the argument to a Set call.</summary>
+        </member>
+        <member name="P:System.SR.HostExecutionContextManager_InvalidOperation_CannotOverrideSetWithoutRevert">
+            <summary>Must override both HostExecutionContextManager.SetHostExecutionContext and HostExecutionContextManager.Revert.</summary>
+        </member>
+        <member name="P:System.SR.HostExecutionContextManager_InvalidOperation_CannotUseSwitcherOtherThread">
+            <summary>Undo operation must be performed on the thread where the corresponding context was Set.</summary>
+        </member>
+    </members>
+</doc>

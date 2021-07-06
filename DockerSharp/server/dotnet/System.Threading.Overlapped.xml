@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Threading.Overlapped</name>
+    </assembly>
+    <members>
+        <member name="P:System.SR.Argument_AlreadyBoundOrSyncHandle">
+            <summary>'handle' has already been bound to the thread pool, or was not opened for asynchronous I/O.</summary>
+        </member>
+        <member name="P:System.SR.Argument_InvalidHandle">
+            <summary>Handle has been disposed or is invalid.</summary>
+        </member>
+        <member name="P:System.SR.Argument_NativeOverlappedAlreadyFree">
+            <summary>'overlapped' has already been freed.</summary>
+        </member>
+        <member name="P:System.SR.Argument_NativeOverlappedWrongBoundHandle">
+            <summary>'overlapped' was not allocated by this ThreadPoolBoundHandle instance.</summary>
+        </member>
+        <member name="P:System.SR.Argument_PreAllocatedAlreadyAllocated">
+            <summary>'preAllocated' is already in use.</summary>
+        </member>
+        <member name="P:System.SR.InvalidOperation_NativeOverlappedReused">
+            <summary>NativeOverlapped cannot be reused for multiple operations.</summary>
+        </member>
+    </members>
+</doc>

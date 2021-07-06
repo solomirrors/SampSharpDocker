@@ -1,0 +1,1397 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Net.NetworkInformation</name>
+    </assembly>
+    <members>
+        <member name="T:System.Net.NetworkInformation.DuplicateAddressDetectionState">
+            <summary>
+            Specifies the current state of an IP address.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.GatewayIPAddressInformation">
+            <summary>
+            Provides information about a network interface address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformation.Address">
+            <summary>
+            Gets the Internet Protocol (IP) address.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IcmpV4Statistics">
+            <summary>
+            Provides Internet Control Message Protocol for IPv4 (ICMPv4) statistical data for the local computer.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRepliesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Address Mask Reply messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRepliesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Address Mask Reply messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRequestsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Address Mask Request messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.AddressMaskRequestsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Address Mask Request messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.DestinationUnreachableMessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) messages received due to a packet having an unreachable address in its destination.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.DestinationUnreachableMessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) messages sent because of a packet having an unreachable address in its destination.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRepliesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Echo Reply messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRepliesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Echo Reply messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRequestsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Echo Request messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.EchoRequestsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Echo Request messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ErrorsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) error messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ErrorsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Echo Request messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.MessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.MessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ParameterProblemsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Parameter Problem messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.ParameterProblemsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Parameter Problem messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.RedirectsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Redirect messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.RedirectsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Redirect messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.SourceQuenchesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Source Quench messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.SourceQuenchesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Source Quench messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimeExceededMessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Time Exceeded messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimeExceededMessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Time Exceeded messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRepliesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Timestamp Reply messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRepliesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Timestamp Reply messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRequestsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Timestamp Request messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV4Statistics.TimestampRequestsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 4 (ICMPv4) Timestamp Request messages sent.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IcmpV6Statistics">
+            <summary>
+            Provides Internet Control Message Protocol for Internet Protocol version 6 (ICMPv6) statistical data for the local computer.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.DestinationUnreachableMessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) messages received because of a packet having an unreachable address in its destination.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.DestinationUnreachableMessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) messages sent because of a packet having an unreachable address in its destination.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRepliesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Echo Reply messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRepliesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Echo Reply messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRequestsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Echo Request messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.EchoRequestsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Echo Request messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ErrorsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) error messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ErrorsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) error messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipQueriesReceived">
+            <summary>
+            Gets the number of Internet Group management Protocol (IGMP) Group Membership Query messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipQueriesSent">
+            <summary>
+            Gets the number of Internet Group management Protocol (IGMP) Group Membership Query messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReductionsReceived">
+            <summary>
+            Gets the number of Internet Group Management Protocol (IGMP) Group Membership Reduction messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReductionsSent">
+            <summary>
+            Gets the number of Internet Group Management Protocol (IGMP) Group Membership Reduction messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReportsReceived">
+            <summary>
+            Gets the number of Internet Group Management Protocol (IGMP) Group Membership Report messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MembershipReportsSent">
+            <summary>
+            Gets the number of Internet Group Management Protocol (IGMP) Group Membership Report messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.MessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborAdvertisementsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Neighbor Advertisement messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborAdvertisementsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Neighbor Advertisement messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborSolicitsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Neighbor Solicitation messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.NeighborSolicitsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Neighbor Solicitation messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.PacketTooBigMessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Packet Too Big messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.PacketTooBigMessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Packet Too Big messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ParameterProblemsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Parameter Problem messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.ParameterProblemsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Parameter Problem messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RedirectsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Redirect messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RedirectsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Redirect messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterAdvertisementsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Router Advertisement messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterAdvertisementsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Router Advertisement messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterSolicitsReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Router Solicitation messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.RouterSolicitsSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Router Solicitation messages sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.TimeExceededMessagesReceived">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Time Exceeded messages received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IcmpV6Statistics.TimeExceededMessagesSent">
+            <summary>
+            Gets the number of Internet Control Message Protocol version 6 (ICMPv6) Time Exceeded messages sent.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPAddressInformation">
+            <summary>
+            Provides information about a network interface address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPAddressInformation.Address">
+            <summary>
+            Gets the Internet Protocol (IP) address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPAddressInformation.IsDnsEligible">
+            <summary>
+            Gets a bool value that indicates whether the Internet Protocol (IP) address is legal to appear in a Domain Name System (DNS) server database.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPAddressInformation.IsTransient">
+            <summary>
+            Gets a bool value that indicates whether the Internet Protocol (IP) address is transient.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPGlobalProperties">
+            <summary>
+            Provides various global machine properties related to Internet Protocol (IP),
+            such as the local host name, domain name, and active socket connections.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveUdpListeners">
+            <summary>
+            Gets the Active Udp Listeners on this machine.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveTcpListeners">
+            <summary>
+            Gets the Active Tcp Listeners on this machine.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveTcpConnections">
+            <summary>
+            Gets the Active Udp Listeners on this machine.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DhcpScopeName">
+            <summary>
+            Gets the Dynamic Host Configuration Protocol (DHCP) scope name.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DomainName">
+            <summary>
+            Gets the domain in which the local computer is registered.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalProperties.HostName">
+            <summary>
+            Gets the host name for the local computer.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalProperties.IsWinsProxy">
+            <summary>
+            Gets a bool value that specifies whether the local computer is acting as a Windows Internet Name Service (WINS) proxy.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalProperties.NodeType">
+            <summary>
+            Gets the Network Basic Input/Output System (NetBIOS) node type of the local computer.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUdpIPv4Statistics">
+            <summary>
+            Provides User Datagram Protocol (UDP) statistical data for the local computer.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIcmpV4Statistics">
+            <summary>
+            Provides Internet Control Message Protocol (ICMP) version 4 statistical data for the local computer.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIcmpV6Statistics">
+            <summary>
+            Provides Internet Control Message Protocol (ICMP) version 6 statistical data for the local computer.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPv4GlobalStatistics">
+            <summary>
+            Provides Internet Protocol (IP) statistical data for the local computer.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUnicastAddressesAsync">
+            <summary>
+            Returns a list of all unicast IP addresses after ensuring they are all stable.
+            </summary>
+            <returns>The collection of unicast IP addresses.</returns>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPGlobalStatistics">
+            <summary>
+            Provides Internet Protocol (IP) statistical data for the local machine.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.DefaultTtl">
+            <summary>
+            Gets the default time-to-live (TTL) value for Internet Protocol (IP) packets.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ForwardingEnabled">
+            <summary>
+            Gets a bool value that specifies whether Internet Protocol (IP) packet forwarding is enabled.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.NumberOfInterfaces">
+            <summary>
+            Gets the number of network interfaces.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.NumberOfIPAddresses">
+            <summary>
+            Gets the number of Internet Protocol (IP) addresses assigned to the local computer.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketRequests">
+            <summary>
+            Gets the number of outbound Internet Protocol (IP) packets.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketRoutingDiscards">
+            <summary>
+            Gets the number of routes in the routing table that have been discarded.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketsDiscarded">
+            <summary>
+            Gets the number of transmitted Internet Protocol (IP) packets that have been discarded.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.OutputPacketsWithNoRoute">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets for which the local computer could not determine a route to the destination address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketFragmentFailures">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets that could not be fragmented.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketReassembliesRequired">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets that required reassembly.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketReassemblyFailures">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets that were not successfully reassembled.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketReassemblyTimeout">
+            <summary>
+            Gets the maximum amount of time within which all fragments of an Internet Protocol (IP) packet must arrive. 
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketsFragmented">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets fragmented.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.PacketsReassembled">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets reassembled.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPackets">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsDelivered">
+            <summary>
+            Gets the number of Internet Protocol(IP) packets received and delivered.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsDiscarded">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets that have been received and discarded.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsForwarded">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets forwarded.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsWithAddressErrors">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets with address errors that were received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsWithHeadersErrors">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets with header errors that were received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.ReceivedPacketsWithUnknownProtocol">
+            <summary>
+            Gets the number of Internet Protocol (IP) packets received on the local machine with an unknown protocol in the header.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPGlobalStatistics.NumberOfRoutes">
+            <summary>
+            Gets the number of routes in the Internet Protocol (IP) routing table.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPInterfaceProperties">
+            <summary>
+            Provides information about a network interface that supports Internet Protocol (IP).
+            such as the addresses assigned to the adapter, and other DNS and routing-related information.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.IsDnsEnabled">
+            <summary>
+            Gets a bool value that indicates whether this interface is configured to send name resolution queries to a Domain Name System (DNS) server.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DnsSuffix">
+            <summary>
+            Gets the Domain Name System (DNS) suffix associated with this interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.IsDynamicDnsEnabled">
+            <summary>
+            Gets a bool value that indicates whether this interface is configured to automatically register its IP address information with the Domain Name System (DNS).
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.UnicastAddresses">
+            <summary>
+            The address identifies a single computer. Packets sent to a unicast address are sent to the computer identified by the address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.MulticastAddresses">
+            <summary>
+            The address identifies multiple computers. Packets sent to a multicast address are sent to all computers identified by the address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.AnycastAddresses">
+            <summary>
+            The address identifies multiple computers. Packets sent to an anycast address are sent to one of the computers identified by the address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DnsAddresses">
+            <summary>
+            The address is that of a Domain Name Service (DNS) server for the local computer.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.GatewayAddresses">
+            <summary>
+            Gets the network gateway addresses.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DhcpServerAddresses">
+            <summary>
+            Gets the addresses for Dynamic Host Configuration Protocol (DHCP) servers.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.WinsServersAddresses">
+            <summary>
+            Gets the list of Wins Servers registered with this interface
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv4Properties">
+            <summary>
+            Gets the IP version 4.0 specific properties for this network interface.
+            </summary>
+            <returns>The interface' IPv4-specific properties.</returns>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv6Properties">
+            <summary>
+            Gets the IP version 6.0 specific properties for this network interface.
+            </summary>
+            <returns>The interface' IPv6-specific properties.</returns>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPInterfaceStatistics">
+            <summary>
+            Provides statistics information for a particular network interface,
+            such as the total number of bytes sent and received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.BytesReceived">
+            <summary>
+            Gets the number of bytes received on the interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.BytesSent">
+            <summary>
+            Gets the number of bytes sent on the interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.IncomingPacketsDiscarded">
+            <summary>
+            Gets the number of incoming packets discarded.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.IncomingPacketsWithErrors">
+            <summary>
+            Gets the number of incoming packets with errors.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.IncomingUnknownProtocolPackets">
+            <summary>
+            Gets the number of incoming packets with an unknown protocol.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.NonUnicastPacketsReceived">
+            <summary>
+            Gets the number of non-unicast packets received on the interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.NonUnicastPacketsSent">
+            <summary>
+            Gets the number of non-unicast packets sent on the interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.OutgoingPacketsDiscarded">
+            <summary>
+            Gets the number of outgoing packets that were discarded.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.OutgoingPacketsWithErrors">
+            <summary>
+            Gets the number of outgoing packets with errors.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.OutputQueueLength">
+            <summary>
+            Gets the length of the output queue.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.UnicastPacketsReceived">
+            <summary>
+            Gets the number of unicast packets received on the interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPInterfaceStatistics.UnicastPacketsSent">
+            <summary>
+            Gets the number of unicast packets sent on the interface.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPv4InterfaceProperties">
+            <summary>
+            Provides information about network interfaces that support Internet Protocol (IP) version 4.0.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.UsesWins">
+            <summary>
+            Gets a bool value that indicates whether an interface uses Windows Internet Name Service (WINS).
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsDhcpEnabled">
+            <summary>
+            Gets a bool value that indicates whether the interface is configured to use a dynamic host configuration protocol (DHCP) server to obtain an IP address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsAutomaticPrivateAddressingActive">
+            <summary>
+            Gets a bool value that indicates whether this interface has an automatic private IP addressing (APIPA) address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsAutomaticPrivateAddressingEnabled">
+            <summary>
+            Gets a bool value that indicates whether this interface has automatic private IP addressing (APIPA) enabled.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.Index">
+            <summary>
+            Gets the interface index for the Internet Protocol (IP) address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.IsForwardingEnabled">
+            <summary>
+            Gets a bool value that indicates whether this interface can route packets.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv4InterfaceProperties.Mtu">
+            <summary>
+            Gets the maximum transmission unit (MTU) for this network interface.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPv4InterfaceStatistics">
+            <summary>
+            Provides statistical data for a network interface on the local computer.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPv6InterfaceProperties">
+            <summary>
+            Provides information about network interfaces that support Internet Protocol (IP) version 6.0.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv6InterfaceProperties.Index">
+            <summary>
+            Gets the interface index for the Internet Protocol (IP) address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.IPv6InterfaceProperties.Mtu">
+            <summary>
+            Gets the maximum transmission unit (MTU) for this network interface.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPv6InterfaceProperties.GetScopeId(System.Net.NetworkInformation.ScopeLevel)">
+            <summary>
+            Returns IPv6 scope identifiers.
+            </summary>
+            <param name="scopeLevel">The scope level.</param>
+            <returns>The IPv6 scope identifier.</returns>
+        </member>
+        <member name="T:System.Net.NetworkInformation.MulticastIPAddressInformation">
+            <summary>
+            Provides information about a network interface's unicast address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.AddressPreferredLifetime">
+            <summary>
+            Gets the number of seconds remaining during which this address is the preferred address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.AddressValidLifetime">
+            <summary>
+            Gets the number of seconds remaining during which this address is valid.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.DhcpLeaseLifetime">
+            <summary>
+            Specifies the amount of time remaining on the Dynamic Host Configuration Protocol (DHCP) lease for this IP address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.DuplicateAddressDetectionState">
+            <summary>
+            Gets a value that indicates the state of the duplicate address detection algorithm.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.PrefixOrigin">
+            <summary>
+            Gets a value that identifies the source of a unicast IP address prefix.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.SuffixOrigin">
+            <summary>
+            Gets a value that identifies the source of a unicast IP address suffix.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.NetBiosNodeType">
+            <summary>
+            Specifies the Network Basic Input/Output System (NetBIOS) node type.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces">
+            <summary>
+            Returns objects that describe the network interfaces on the local computer.
+            </summary>
+            <returns>An array of all network interfaces on the local computer.</returns>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.Name">
+            <summary>
+            Gets the name of the network interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.Description">
+            <summary>
+            Gets the description of the network interface
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPProperties">
+            <summary>
+            Gets the IP properties for this network interface.
+            </summary>
+            <returns>The interface's IP properties.</returns>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPStatistics">
+            <summary>
+            Provides Internet Protocol (IP) statistical data for this network interface.
+            </summary>
+            <returns>The interface's IP statistics.</returns>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPv4Statistics">
+            <summary>
+            Provides Internet Protocol (IP) statistical data for this network interface.
+            Despite the naming, the results are not IPv4 specific.
+            Do not use this method, use GetIPStatistics instead.
+            </summary>
+            <returns>The interface's IP statistics.</returns>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.OperationalStatus">
+            <summary>
+            Gets the current operational state of the network connection.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.Speed">
+            <summary>
+            Gets the speed of the interface in bits per second as reported by the interface.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.IsReceiveOnly">
+            <summary>
+            Gets a bool value that indicates whether the network interface is set to only receive data packets.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.SupportsMulticast">
+            <summary>
+            Gets a bool value that indicates whether this network interface is enabled to receive multicast packets.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInterface.GetPhysicalAddress">
+            <summary>
+            Gets the physical address of this network interface
+            </summary>
+            <returns>The interface's physical address.</returns>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInterface.NetworkInterfaceType">
+            <summary>
+            Gets the interface type.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.NetworkInterfaceComponent">
+            <summary>
+            Specified the list of Networking components that are supported on a Network Interface
+            </summary>
+        </member>
+        <member name="F:System.Net.NetworkInformation.NetworkInterfaceComponent.IPv4">
+            <summary>
+            Internet Protocol version 4 is supported.
+            </summary>
+        </member>
+        <member name="F:System.Net.NetworkInformation.NetworkInterfaceComponent.IPv6">
+            <summary>
+            Internet Protocol version 6 is supported.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.NetworkInterfaceType">
+            <summary>
+            Specifies types of network interfaces.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.PrefixOrigin">
+            <summary>
+            Specifies how an IP address network prefix was located.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.SuffixOrigin">
+            <summary>
+            Specifies how an IP address host suffix was located.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.TcpConnectionInformation">
+            <summary>
+            Provides information about the Transmission Control Protocol (TCP) connections on the local computer.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpConnectionInformation.LocalEndPoint">
+            <summary>
+            Gets the local endpoint of a Transmission Control Protocol (TCP) connection.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpConnectionInformation.RemoteEndPoint">
+            <summary>
+            Gets the remote endpoint of a Transmission Control Protocol (TCP) connection.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpConnectionInformation.State">
+            <summary>
+            Gets the state of this Transmission Control Protocol (TCP) connection.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.TcpState">
+            <summary>
+            Specifies the states of a Transmission Control Protocol (TCP) connection.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.TcpStatistics">
+            <summary>
+            Provides Transmission Control Protocol (TCP) statistical data.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.ConnectionsAccepted">
+            <summary>
+            Gets the number of accepted Transmission Control Protocol (TCP) connection requests.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.ConnectionsInitiated">
+            <summary>
+            Gets the number of Transmission Control Protocol (TCP) connection requests made by clients.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.CumulativeConnections">
+            <summary>
+            Gets the total number of Transmission Control Protocol (TCP) connections established.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.CurrentConnections">
+            <summary>
+            Gets the number of current Transmission Control Protocol (TCP) connections.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.ErrorsReceived">
+            <summary>
+            Gets the number of Transmission Control Protocol (TCP) errors received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.FailedConnectionAttempts">
+            <summary>
+            Gets the number of failed Transmission Control Protocol (TCP) connection attempts.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.MaximumConnections">
+            <summary>
+            Gets the maximum number of supported Transmission Control Protocol (TCP) connections.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.MaximumTransmissionTimeout">
+            <summary>
+            Gets the maximum retransmission time-out value for Transmission Control Protocol (TCP) segments.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.MinimumTransmissionTimeout">
+            <summary>
+            Gets the minimum retransmission time-out value for Transmission Control Protocol (TCP) segments.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.ResetConnections">
+            <summary>
+            Gets the number of RST packets received by Transmission Control Protocol (TCP) connections.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.SegmentsReceived">
+            <summary>
+            Gets the number of Transmission Control Protocol (TCP) segments received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.SegmentsResent">
+            <summary>
+            Gets the number of Transmission Control Protocol (TCP) segments received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.SegmentsSent">
+            <summary>
+            Gets the number of Transmission Control Protocol (TCP) segments sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.TcpStatistics.ResetsSent">
+            <summary>
+            Gets the number of Transmission Control Protocol (TCP) segments sent with the reset flag set.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.UdpStatistics">
+            <summary>
+            Provides User Datagram Protocol (UDP) statistical data.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UdpStatistics.DatagramsReceived">
+            <summary>
+            Gets the number of User Datagram Protocol (UDP) datagrams received.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UdpStatistics.DatagramsSent">
+            <summary>
+            Gets the number of User Datagram Protocol (UDP) datagrams sent.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UdpStatistics.IncomingDatagramsDiscarded">
+            <summary>
+            Gets the number of User Datagram Protocol (UDP) datagrams received and discarded due to port errors.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UdpStatistics.IncomingDatagramsWithErrors">
+            <summary>
+            Gets the number of User Datagram Protocol (UDP) datagrams received and discarded due to errors other than bad port information.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UdpStatistics.UdpListeners">
+            <summary>
+            Gets the number of local endpoints listening for User Datagram Protocol (UDP) datagrams.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.UnicastIPAddressInformation">
+            <summary>
+            Provides information about a network interface's unicast address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.AddressPreferredLifetime">
+            <summary>
+            Gets the number of seconds remaining during which this address is the preferred address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.AddressValidLifetime">
+            <summary>
+            Gets the number of seconds remaining during which this address is valid.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.DhcpLeaseLifetime">
+            <summary>
+            Specifies the amount of time remaining on the Dynamic Host Configuration Protocol (DHCP) lease for this IP address.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.DuplicateAddressDetectionState">
+            <summary>
+            Gets a value that indicates the state of the duplicate address detection algorithm.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.PrefixOrigin">
+            <summary>
+            Gets a value that identifies the source of a unicast IP address prefix.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.SuffixOrigin">
+            <summary>
+            Gets a value that identifies the source of a unicast IP address suffix.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.PrefixLength">
+            <summary>
+            The CIDR representation of the subnet mask.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.NetworkInformationException">
+            <devdoc>
+               <para>
+                  Provides NetworkInformation exceptions to the application.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInformationException.#ctor">
+            <devdoc>
+               <para>
+                  Creates a new instance of the <see cref='T:System.Net.NetworkInformation.NetworkInformationException'/> class with the default error code.
+               </para>
+            </devdoc>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInformationException.#ctor(System.Int32)">
+            <devdoc>
+               <para>
+                  Creates a new instance of the <see cref='T:System.Net.NetworkInformation.NetworkInformationException'/> class with the specified error code.
+               </para>
+            </devdoc>
+        </member>
+        <member name="P:System.Net.NetworkInformation.NetworkInformationException.ErrorCode">
+            <devdoc>
+               <para>[To be supplied.]</para>
+            </devdoc>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPAddressUtil.IsMulticast(System.Net.IPAddress)">
+            <summary>
+            Returns a value indicating whether the given IPAddress is a multicast address.
+            </summary>
+            <param name="address">The address to test.</param>
+            <returns>True if the address is a multicast address; false otherwise.</returns>
+        </member>
+        <member name="M:System.Net.NetworkInformation.IPAddressUtil.GetIPAddressFromNativeInfo(Interop.Sys.IpAddressInfo*)">
+            <summary>
+            Copies the address bytes out of the given native info's buffer and constructs a new IPAddress.
+            </summary>
+            <param name="addressInfo">A pointer to a native IpAddressInfo structure.</param>
+            <returns>A new IPAddress created with the information in the native structure.</returns>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixNetworkInterface.Index">
+            <summary>
+            The system's index for this network device.
+            </summary>
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixNetworkInterface.Addresses">
+            <summary>
+            Returns a list of all of the interface's IP Addresses.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.UnixUnicastIPAddressInformation">
+            Provides information about a network interface's unicast address
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.IsDnsEligible">
+            Gets a bool value that indicates whether the Internet Protocol (IP) address is legal to appear in a Domain Name System (DNS) server database.
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.IsTransient">
+            Gets a bool value that indicates whether the Internet Protocol (IP) address is transient.
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.AddressPreferredLifetime">
+            [To be supplied.]
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.AddressValidLifetime">
+            [To be supplied.]
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.DhcpLeaseLifetime">
+            Specifies the amount of time remaining on the Dynamic Host Configuration Protocol (DHCP) lease for this IP address.
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.DuplicateAddressDetectionState">
+            Gets a value that indicates the state of the duplicate address detection algorithm.
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.PrefixOrigin">
+            Gets a value that identifies the source of a unicast IP address prefix.
+        </member>
+        <member name="P:System.Net.NetworkInformation.UnixUnicastIPAddressInformation.SuffixOrigin">
+            Gets a value that identifies the source of a unicast IP address suffix.
+        </member>
+        <member name="T:System.Net.NetworkInformation.LinuxIPInterfaceStatistics">
+            <summary>
+            IPInterfaceStatistics provider for Linux. 
+            Reads information out of /proc/net/dev and other locations.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.NetworkInterfacePal.GetAllNetworkInterfaces">
+            Returns objects that describe the network interfaces on the local computer.
+        </member>
+        <member name="T:System.Net.NetworkInformation.LinuxNetworkInterface">
+            <summary>
+            Implements a NetworkInterface on Linux.
+            </summary>
+        </member>
+        <member name="M:System.Net.NetworkInformation.LinuxNetworkInterface.GetOrCreate(System.Collections.Generic.Dictionary{System.String,System.Net.NetworkInformation.LinuxNetworkInterface},System.String,System.Int32)">
+            <summary>
+            Gets or creates a LinuxNetworkInterface, based on whether it already exists in the given Dictionary.
+            If created, it is added to the Dictionary.
+            </summary>
+            <param name="interfaces">The Dictionary of existing interfaces.</param>
+            <param name="name">The name of the interface.</param>
+            <param name="index">Interafce index of the interface.</param>
+            <returns>The cached or new LinuxNetworkInterface with the given name.</returns>
+        </member>
+        <member name="T:System.Net.NetworkInformation.Icmpv4StatisticsTable">
+            <summary>
+            A storage structure for the information parsed out of the
+            /proc/net/snmp file, related to ICMPv4 protocol statistics.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.Icmpv6StatisticsTable">
+            <summary>
+            A storage structure for the information parsed out of the
+            /proc/net/snmp6 file, related to ICMPv6 protocol statistics.
+            </summary>
+        </member>
+        <member name="T:System.Net.NetworkInformation.IPGlobalStatisticsTable">
+            <summary>
+            Storage structure for IP Global statistics from /proc/net/snmp
+            </summary>
+        </member>
+        <member name="P:System.NotImplemented.ByDesign">
+            <summary>
+            Permanent NotImplementedException with no message shown to user.
+            </summary>
+        </member>
+        <member name="M:System.NotImplemented.ByDesignWithMessage(System.String)">
+            <summary>
+            Permanent NotImplementedException with localized message shown to user.
+            </summary>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskToApm">
+            <summary>
+            Provides support for efficiently using Tasks to implement the APM (Begin/End) pattern.
+            </summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.Begin(System.Threading.Tasks.Task,System.AsyncCallback,System.Object)">
+            <summary>
+            Marshals the Task as an IAsyncResult, using the supplied callback and state
+            to implement the APM pattern.
+            </summary>
+            <param name="task">The Task to be marshaled.</param>
+            <param name="callback">The callback to be invoked upon completion.</param>
+            <param name="state">The state to be stored in the IAsyncResult.</param>
+            <returns>An IAsyncResult to represent the task's asynchronous operation.</returns>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.End(System.IAsyncResult)">
+            <summary>Processes an IAsyncResult returned by Begin.</summary>
+            <param name="asyncResult">The IAsyncResult to unwrap.</param>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.End``1(System.IAsyncResult)">
+            <summary>Processes an IAsyncResult returned by Begin.</summary>
+            <param name="asyncResult">The IAsyncResult to unwrap.</param>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.InvokeCallbackWhenTaskCompletes(System.Threading.Tasks.Task,System.AsyncCallback,System.IAsyncResult)">
+            <summary>Invokes the callback asynchronously when the task has completed.</summary>
+            <param name="antecedent">The Task to await.</param>
+            <param name="callback">The callback to invoke when the Task completes.</param>
+            <param name="asyncResult">The Task used as the IAsyncResult.</param>
+        </member>
+        <member name="T:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult">
+            <summary>
+            Provides a simple IAsyncResult that wraps a Task.  This, in effect, allows
+            for overriding what's seen for the CompletedSynchronously and AsyncState values.
+            </summary>
+        </member>
+        <member name="F:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult.Task">
+            <summary>The wrapped Task.</summary>
+        </member>
+        <member name="F:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult._state">
+            <summary>The new AsyncState value.</summary>
+        </member>
+        <member name="F:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult._completedSynchronously">
+            <summary>The new CompletedSynchronously value.</summary>
+        </member>
+        <member name="M:System.Threading.Tasks.TaskToApm.TaskWrapperAsyncResult.#ctor(System.Threading.Tasks.Task,System.Object,System.Boolean)">
+            <summary>Initializes the IAsyncResult with the Task to wrap and the overriding AsyncState and CompletedSynchronously values.</summary>
+            <param name="task">The Task to wrap.</param>
+            <param name="state">The new AsyncState value</param>
+            <param name="completedSynchronously">The new CompletedSynchronously value.</param>
+        </member>
+        <member name="T:System.IO.RowConfigReader">
+            <summary> 
+            Helper for reading config files where each row is a key-value data pair.
+            The input key-values must not have any whitespace within them.
+            Keys are only matched if they begin a line, with no preceding whitespace.
+            </summary>
+        </member>
+        <member name="M:System.IO.RowConfigReader.#ctor(System.String)">
+            <summary>
+            Constructs a new RowConfigReader which reads from the given string.
+            <param name="buffer">The string to parse through.</param>
+            </summary>
+        </member>
+        <member name="M:System.IO.RowConfigReader.#ctor(System.String,System.StringComparison)">
+            <summary>
+            Constructs a new RowConfigReader which reads from the given string.
+            <param name="buffer">The string to parse through.</param>
+            <param name="comparisonKind">The comparison kind to use.</param>
+            </summary>
+        </member>
+        <member name="M:System.IO.RowConfigReader.GetNextValue(System.String)">
+            <summary>
+            Gets the next occurrence of the given key, from the current position of the reader,
+            or throws if no occurrence of the key exists in the remainder of the string.
+            </summary>
+        </member>
+        <member name="M:System.IO.RowConfigReader.TryGetNextValue(System.String,System.String@)">
+            <summary>
+            Tries to get the next occurrence of the given key from the current position of the reader.
+            If successful, returns true and stores the result in 'value'. Otherwise, returns false.
+            </summary>
+        </member>
+        <member name="M:System.IO.RowConfigReader.GetNextValueAsInt32(System.String)">
+            <summary>
+            Gets the next occurrence of the key in the string, and parses it as an Int32.
+            Throws if the key is not found in the remainder of the string, or if the key
+            cannot be successfully parsed into an Int32.
+            </summary>
+            <remarks>
+            This is mainly provided as a helper because most Linux config/info files
+            store integral data.
+            </remarks>
+        </member>
+        <member name="M:System.IO.RowConfigReader.GetNextValueAsInt64(System.String)">
+            <summary>
+            Gets the next occurrence of the key in the string, and parses it as an Int64.
+            Throws if the key is not found in the remainder of the string, or if the key
+            cannot be successfully parsed into an Int64.
+            </summary>
+            <remarks>
+            This is mainly provided as a helper because most Linux config/info files
+            store integral data.
+            </remarks>
+        </member>
+        <member name="M:System.IO.RowConfigReader.ReadFirstValueFromString(System.String,System.String)">
+            <summary>
+            Reads the value of the first occurrence of the given key contained in the string given.
+            </summary>
+            <param name="data">The key-value row configuration string.</param>
+            <param name="key">The key to find.</param>
+            <returns>The value of the row containing the first occurrence of the key.</returns>
+        </member>
+        <member name="T:System.IO.StringParser">
+            <summary>
+            Provides a string parser that may be used instead of String.Split 
+            to avoid unnecessary string and array allocations.
+            </summary>
+        </member>
+        <member name="F:System.IO.StringParser._buffer">
+            <summary>The string being parsed.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._separator">
+            <summary>The separator character used to separate subcomponents of the larger string.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._skipEmpty">
+            <summary>true if empty subcomponents should be skipped; false to treat them as valid entries.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._startIndex">
+            <summary>The starting index from which to parse the current entry.</summary>
+        </member>
+        <member name="F:System.IO.StringParser._endIndex">
+            <summary>The ending index that represents the next index after the last character that's part of the current entry.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.#ctor(System.String,System.Char,System.Boolean)">
+            <summary>Initialize the StringParser.</summary>
+            <param name="buffer">The string to parse.</param>
+            <param name="separator">The separator character used to separate subcomponents of <paramref name="buffer"/>.</param>
+            <param name="skipEmpty">true if empty subcomponents should be skipped; false to treat them as valid entries.  Defaults to false.</param>
+        </member>
+        <member name="M:System.IO.StringParser.MoveNext">
+            <summary>Moves to the next component of the string.</summary>
+            <returns>true if there is a next component to be parsed; otherwise, false.</returns>
+        </member>
+        <member name="M:System.IO.StringParser.MoveNextOrFail">
+            <summary>
+            Moves to the next component of the string.  If there isn't one, it throws an exception.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.MoveAndExtractNext">
+            <summary>
+            Moves to the next component of the string and returns it as a string.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.StringParser.MoveAndExtractNextInOuterParens">
+            <summary>
+            Moves to the next component of the string, which must be enclosed in the only set of top-level parentheses
+            in the string.  The extracted value will be everything between (not including) those parentheses.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.StringParser.ExtractCurrent">
+            <summary>
+            Gets the current subcomponent of the string as a string.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextInt32">
+            <summary>Moves to the next component and parses it as an Int32.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextInt64">
+            <summary>Moves to the next component and parses it as an Int64.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextUInt32">
+            <summary>Moves to the next component and parses it as a UInt32.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextUInt64">
+            <summary>Moves to the next component and parses it as a UInt64.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseNextChar">
+            <summary>Moves to the next component and parses it as a Char.</summary>
+        </member>
+        <member name="M:System.IO.StringParser.ParseRaw``1(System.IO.StringParser.ParseRawFunc{``0})">
+            <summary>
+            Moves to the next component and hands the raw buffer and indexing data to a selector function
+            that can validate and return the appropriate data from the component.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.ExtractCurrentToEnd">
+            <summary>
+            Gets the current subcomponent and all remaining components of the string as a string.
+            </summary>
+        </member>
+        <member name="M:System.IO.StringParser.ThrowForInvalidData">
+            <summary>Throws unconditionally for invalid data.</summary>
+        </member>
+        <member name="P:System.SR.net_MethodNotImplementedException">
+            <summary>This method is not implemented by this class.</summary>
+        </member>
+        <member name="P:System.SR.net_PropertyNotImplementedException">
+            <summary>This property is not implemented by this class.</summary>
+        </member>
+        <member name="P:System.SR.net_completed_result">
+            <summary>This operation cannot be performed on a completed asynchronous result object.</summary>
+        </member>
+        <member name="P:System.SR.net_io_invalidasyncresult">
+            <summary>The IAsyncResult object was not returned from the corresponding asynchronous method on this class.</summary>
+        </member>
+        <member name="P:System.SR.net_io_invalidendcall">
+            <summary>{0} can only be called once for each asynchronous operation.</summary>
+        </member>
+        <member name="P:System.SR.net_bad_mac_address">
+            <summary>An invalid physical address was specified: '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.net_collection_readonly">
+            <summary>The collection is read-only.</summary>
+        </member>
+        <member name="P:System.SR.net_FailedToParseNetworkFile">
+            <summary>An error was encountered while parsing network information from the operating system.</summary>
+        </member>
+        <member name="P:System.SR.net_NoLoopback">
+            <summary>No loopback interface was found on the local machine.</summary>
+        </member>
+        <member name="P:System.SR.net_InformationUnavailableOnPlatform">
+            <summary>The information requested is unavailable on the current platform.</summary>
+        </member>
+        <member name="P:System.SR.net_PInvokeError">
+            <summary>An error was encountered while querying information from the operating system.</summary>
+        </member>
+        <member name="T:Interop.Error">
+            <summary>Common Unix errno error codes.</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Private.Uri</name>
+    </assembly>
+    <members>
+        <member name="T:System.Collections.Generic.ArrayBuilder`1">
+            <summary>
+            Helper type for avoiding allocations while building arrays.
+            </summary>
+            <typeparam name="T">The element type.</typeparam>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayBuilder`1.#ctor(System.Int32)">
+            <summary>
+            Initializes the <see cref="T:System.Collections.Generic.ArrayBuilder`1"/> with a specified capacity.
+            </summary>
+            <param name="capacity">The capacity of the array to allocate.</param>
+        </member>
+        <member name="P:System.Collections.Generic.ArrayBuilder`1.Capacity">
+            <summary>
+            Gets the number of items this instance can store without re-allocating,
+            or 0 if the backing array is <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ArrayBuilder`1.Buffer">
+            <summary>Gets the current underlying array.</summary>
+        </member>
+        <member name="P:System.Collections.Generic.ArrayBuilder`1.Count">
+            <summary>
+            Gets the number of items in the array currently in use.
+            </summary>
+        </member>
+        <member name="P:System.Collections.Generic.ArrayBuilder`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the item at a certain index in the array.
+            </summary>
+            <param name="index">The index into the array.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayBuilder`1.Add(`0)">
+            <summary>
+            Adds an item to the backing array, resizing it if necessary.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayBuilder`1.First">
+            <summary>
+            Gets the first item in this builder.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayBuilder`1.Last">
+            <summary>
+            Gets the last item in this builder.
+            </summary>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayBuilder`1.ToArray">
+            <summary>
+            Creates an array from the contents of this builder.
+            </summary>
+            <remarks>
+            Do not call this method twice on the same builder.
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ArrayBuilder`1.UncheckedAdd(`0)">
+            <summary>
+            Adds an item to the backing array, without checking if there is room.
+            </summary>
+            <param name="item">The item to add.</param>
+            <remarks>
+            Use this method if you know there is enough space in the <see cref="T:System.Collections.Generic.ArrayBuilder`1"/>
+            for another item, and you are writing performance-sensitive code.
+            </remarks>
+        </member>
+        <member name="M:System.Uri.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.HexEscape(System.Char)">
+            Transforms a character into its hexadecimal representation.
+        </member>
+        <member name="M:System.Uri.Canonicalize">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.Parse">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.Escape">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.Unescape(System.String)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.CheckSecurity">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.IsReservedCharacter(System.Char)">
+            <internalonly/>
+        </member>
+        <member name="M:System.Uri.IsExcludedCharacter(System.Char)">
+            <internalonly/>
+        </member>
+        <member name="T:System.UriFormatException">
+            <summary>
+            An exception class used when an invalid Uniform Resource Identifier is detected.
+            </summary>
+        </member>
+        <member name="P:System.SR.Argument_AddingDuplicate">
+            <summary>An item with the same key has already been added. Key: {0}</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadAuthority">
+            <summary>Invalid URI: The Authority/Host could not be parsed.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadAuthorityTerminator">
+            <summary>Invalid URI: The Authority/Host cannot end with a backslash character ('\\').</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadFormat">
+            <summary>Invalid URI: The format of the URI could not be determined.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_NeedFreshParser">
+            <summary>The URI parser instance passed into 'uriParser' parameter is already registered with the scheme name '{0}'.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_AlreadyRegistered">
+            <summary>A URI scheme name '{0}' already has a registered custom parser.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadHostName">
+            <summary>Invalid URI: The hostname could not be parsed.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadPort">
+            <summary>Invalid URI: Invalid port specified.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadScheme">
+            <summary>Invalid URI: The URI scheme is not valid.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadString">
+            <summary>Invalid URI: There is an invalid sequence in the string.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadUserPassword">
+            <summary>Invalid URI: The username:password construct is badly formed.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_CannotCreateRelative">
+            <summary>A relative URI cannot be created because the 'uriString' parameter represents an absolute URI.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_SchemeLimit">
+            <summary>Invalid URI: The Uri scheme is too long.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_EmptyUri">
+            <summary>Invalid URI: The URI is empty.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_InvalidUriKind">
+            <summary>The value '{0}' passed for the UriKind parameter is invalid.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_MustRootedPath">
+            <summary>Invalid URI: A Dos path must be rooted, for example, 'c:\\'.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_NotAbsolute">
+            <summary>This operation is not supported for a relative URI.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_PortOutOfRange">
+            <summary>A derived type '{0}' has reported an invalid value for the Uri port '{1}'.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_SizeLimit">
+            <summary>Invalid URI: The Uri string is too long.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_UserDrivenParsing">
+            <summary>A derived type '{0}' is responsible for parsing this Uri instance. The base implementation must not be used.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_NotJustSerialization">
+            <summary>UriComponents.SerializationInfoString must not be combined with other UriComponents.</summary>
+        </member>
+        <member name="P:System.SR.net_uri_BadUnicodeHostForIdn">
+            <summary>An invalid Unicode character by IDN standards was specified in the host.</summary>
+        </member>
+        <member name="P:System.SR.Argument_ExtraNotValid">
+            <summary>Extra portion of URI not valid.</summary>
+        </member>
+        <member name="P:System.SR.Argument_InvalidUriSubcomponent">
+            <summary>The subcomponent, {0}, of this uri is not valid.</summary>
+        </member>
+        <member name="P:System.SR.Arg_KeyNotFoundWithKey">
+            <summary>The given key '{0}' was not present in the dictionary.</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  run:
+    container_name: server
+    build: ./
+    ports:
+      - 7777:7777/tcp
+      - 7777:7777/udp
+    volumes:
+      - ./server:/var/server

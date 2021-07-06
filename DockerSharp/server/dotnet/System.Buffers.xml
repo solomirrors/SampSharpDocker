@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Buffers</name>
+    </assembly>
+    <members>
+        <member name="P:System.SR.ArgumentException_BufferNotFromPool">
+            <summary>The buffer is not associated with this pool and may not be returned to it.</summary>
+        </member>
+    </members>
+</doc>
