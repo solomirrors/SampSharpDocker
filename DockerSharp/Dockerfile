@@ -17,5 +17,4 @@ WORKDIR /var/server
 	EXPOSE 7777
 	EXPOSE 7777/udp
 
-RUN rm -f server_log.txt && ln -s /dev/stdout server_log.txt
 ENTRYPOINT ["sh", "scriptfiles/docker/start.sh"]
