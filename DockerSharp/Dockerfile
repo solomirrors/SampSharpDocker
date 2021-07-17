@@ -1,4 +1,4 @@
-#SA-MP Sharp Docker, Release 1.0
+#SA-MP Sharp Docker, Release 1.2
 
 FROM ubuntu:bionic
 	MAINTAINER Denis Laitinen <solomirrors@icloud.com>
